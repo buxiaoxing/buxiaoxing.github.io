@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>布小星</title>
+  
+  <subtitle>I&#39;m thinking...</subtitle>
+  <link href="http://example.com/atom.xml" rel="self"/>
+  
+  <link href="http://example.com/"/>
+  <updated>2022-07-23T14:32:35.705Z</updated>
+  <id>http://example.com/</id>
+  
+  <author>
+    <name>布小星</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>微信公众号开发</title>
+    <link href="http://example.com/2022/06/10/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E5%BC%80%E5%8F%91/"/>
+    <id>http://example.com/2022/06/10/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E5%BC%80%E5%8F%91/</id>
+    <published>2022-06-10T09:28:52.000Z</published>
+    <updated>2022-07-23T14:32:35.705Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>微信授权</strong></p><a id="more"></a><h3 id="微信鉴权"><a href="#微信鉴权" class="headerlink" title="微信鉴权"></a>微信鉴权</h3><p><a href="https://developers.weixin.qq.com/doc/offiaccount/Getting_Started/Overview.html" target="_blank" rel="noopener">https://developers.weixin.qq.com/doc/offiaccount/Getting_Started/Overview.html</a></p><ul><li><p>js接口安全域名</p><p><code>进入公众号后台--&gt;设置与开发--&gt;公众号设置--&gt;功能设置</code></p></li><li><p>ip白名单</p><p><code>设置与开发--&gt;基本配置/安全中心</code></p></li><li><p>启用服务器配置</p><p><code>设置与开发--&gt;基本配置</code></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">router.get(<span class="string">'/auth'</span>, (req, res)=&gt;&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(req)</span><br><span class="line">  <span class="keyword">let</span> &#123;signature, timestamp, nonce, echostr&#125; = req.query</span><br><span class="line">  <span class="keyword">let</span> token = <span class="string">'peter'</span></span><br><span class="line">  <span class="keyword">let</span> arr = [timestamp, nonce, token]</span><br><span class="line">  arr.sort()  <span class="comment">// 字典排序</span></span><br><span class="line">  <span class="keyword">let</span> str = arr.join(<span class="string">''</span>)</span><br><span class="line">  <span class="keyword">let</span> result = sha1(str) <span class="comment">// sha1加密</span></span><br><span class="line">  <span class="keyword">if</span>(result === signature)&#123;</span><br><span class="line">    res.set(<span class="string">'Content-Type'</span>, <span class="string">'text/plain'</span>)</span><br><span class="line">    res.send(echostr)</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    res.send === (<span class="string">'Error!!!'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li><li><p>jsapi授权</p><ul><li><p>获取appid 和 appsecret</p><p><code>设置与开发基本配置</code></p></li><li><p>获取签名</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; appid, secret &#125; = <span class="built_in">require</span>(<span class="string">'../config/index'</span>)</span><br><span class="line"><span class="keyword">const</span> axios = <span class="built_in">require</span>(<span class="string">'axios'</span>)</span><br><span class="line"><span class="keyword">const</span> sha1 = <span class="built_in">require</span>(<span class="string">'sha1'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getTicket</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 获取 access_token</span></span><br><span class="line">  <span class="keyword">let</span> tokenUrl = <span class="string">`https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid=<span class="subst">$&#123;appid&#125;</span>&amp;secret=<span class="subst">$&#123;secret&#125;</span>`</span></span><br><span class="line">  <span class="keyword">const</span> tokenData = <span class="keyword">await</span> axios.get(tokenUrl)</span><br><span class="line">  <span class="built_in">console</span>.log(tokenData)</span><br><span class="line">  <span class="keyword">const</span> &#123;access_token&#125; = tokenData.data</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 获取 ticket 签名</span></span><br><span class="line">  <span class="keyword">let</span> ticketUrl = <span class="string">`https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=<span class="subst">$&#123;access_token&#125;</span>&amp;type=jsapi`</span></span><br><span class="line">  <span class="keyword">const</span> ticketData = <span class="keyword">await</span> axios.get(ticketUrl)</span><br><span class="line">  <span class="built_in">console</span>.log(ticketData)</span><br><span class="line">  <span class="keyword">const</span> &#123; ticket &#125; = ticketData.data</span><br><span class="line">  <span class="keyword">return</span> ticket</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> createNonceStr = <span class="function"><span class="params">()</span>=&gt;</span>&#123; <span class="comment">// 生成随机字符串</span></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.random().toString(<span class="number">36</span>).substring(<span class="number">2</span>,<span class="number">15</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> createTimestamp = <span class="function"><span class="params">()</span>=&gt;</span>&#123; <span class="comment">// 生成时间戳</span></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">parseInt</span>(<span class="keyword">new</span> <span class="built_in">Date</span>().getTime() / <span class="number">1000</span>) + <span class="string">''</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * get signature</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;*&#125;</span> </span>url </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@returns </span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> sign = <span class="keyword">async</span> (url) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> jsapi_ticket = <span class="keyword">await</span> getTicket()</span><br><span class="line">  <span class="keyword">const</span> obj = &#123;</span><br><span class="line">    jsapi_ticket,</span><br><span class="line">    noncestr: createNonceStr(),</span><br><span class="line">    timestamp: createTimestamp(),</span><br><span class="line">    url,</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> signature = sha1(objToString(obj))</span><br><span class="line"></span><br><span class="line">  obj.signature = signature</span><br><span class="line">  obj.appid = appid</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> obj</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * props sort to string like 'key = val &amp; key2 = val2'</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;*&#125;</span> </span>obj </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@returns </span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">objToString</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> keys = <span class="built_in">Object</span>.keys(obj)</span><br><span class="line">  keys = keys.sort()</span><br><span class="line">  <span class="keyword">var</span> newObj = &#123;&#125;</span><br><span class="line">  keys.forEach(<span class="function"><span class="params">prop</span>=&gt;</span>&#123;</span><br><span class="line">    newObj[prop] = obj[prop]</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">var</span> string = <span class="string">''</span></span><br><span class="line">  <span class="keyword">for</span>( k <span class="keyword">in</span> newObj)&#123;</span><br><span class="line">    string += <span class="string">'&amp;'</span> + k + <span class="string">'='</span> + newObj[k]</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  string = string.substring(<span class="number">1</span>)</span><br><span class="line">  <span class="keyword">return</span> string</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = sign</span><br></pre></td></tr></table></figure></li><li><p>请求授权</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;title&gt;Express&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">  &lt;link rel="stylesheet" href="/</span>stylesheets/style.css<span class="string">"&gt;</span></span><br><span class="line"><span class="string">  &lt;script src="</span>http:<span class="comment">//res.wx.qq.com/open/js/jweixin-1.6.0.js"&gt;&lt;/script&gt;</span></span><br><span class="line">  &lt;script src=<span class="string">"https://unpkg.com/axios/dist/axios.min.js"</span>&gt;&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">  &lt;script src="https:/</span><span class="regexp">/cdn.jsdelivr.net/</span>npm/vue@<span class="number">2.6</span><span class="number">.14</span><span class="string">"&gt;&lt;/script&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  &lt;script src="</span><span class="string">"&gt;&lt;/script&gt;</span></span><br><span class="line"><span class="string">&lt;/head&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;body&gt;</span></span><br><span class="line"><span class="string">  &lt;div id="</span>app<span class="string">"&gt;</span></span><br><span class="line"><span class="string">    &lt;h1&gt;Express&lt;/h1&gt;</span></span><br><span class="line"><span class="string">    &lt;p @click="</span>scanQRCode<span class="string">"&gt;Welcome to Express&lt;/p&gt;</span></span><br><span class="line"><span class="string">  &lt;/div&gt;</span></span><br><span class="line"><span class="string">  &lt;script&gt;</span></span><br><span class="line"><span class="string">    new Vue(&#123;</span></span><br><span class="line"><span class="string">      el: '#app',</span></span><br><span class="line"><span class="string">      mounted() &#123;</span></span><br><span class="line"><span class="string">        this.wxconfig()</span></span><br><span class="line"><span class="string">      &#125;,</span></span><br><span class="line"><span class="string">      methods: &#123;</span></span><br><span class="line"><span class="string">        wxconfig() &#123;</span></span><br><span class="line"><span class="string">          const url = encodeURIComponent(location.href.split('#')[0])</span></span><br><span class="line"><span class="string">          axios.get(`http://test.buxiaoxing.com/jsapi?url=$&#123;url&#125;`).then((res) =&gt; &#123;</span></span><br><span class="line"><span class="string">            const &#123;</span></span><br><span class="line"><span class="string">              appid,</span></span><br><span class="line"><span class="string">              noncestr,</span></span><br><span class="line"><span class="string">              timestamp,</span></span><br><span class="line"><span class="string">              signature</span></span><br><span class="line"><span class="string">            &#125; = res.data</span></span><br><span class="line"><span class="string">            wx.config(&#123;</span></span><br><span class="line"><span class="string">              debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。</span></span><br><span class="line"><span class="string">              appId: appid, // 必填，公众号的唯一标识</span></span><br><span class="line"><span class="string">              timestamp, // 必填，生成签名的时间戳</span></span><br><span class="line"><span class="string">              nonceStr: noncestr, // 必填，生成签名的随机串</span></span><br><span class="line"><span class="string">              signature, // 必填，签名</span></span><br><span class="line"><span class="string">              jsApiList: [</span></span><br><span class="line"><span class="string">                'scanQRCode',</span></span><br><span class="line"><span class="string">              ] // 必填，需要使用的JS接口列表</span></span><br><span class="line"><span class="string">            &#125;);</span></span><br><span class="line"><span class="string">          &#125;).catch(err =&gt; &#123;</span></span><br><span class="line"><span class="string">            console.log(err)</span></span><br><span class="line"><span class="string">          &#125;)</span></span><br><span class="line"><span class="string">        &#125;,</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        scanQRCode() &#123;</span></span><br><span class="line"><span class="string">          wx.scanQRCode(&#123;</span></span><br><span class="line"><span class="string">            needResult: 0, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，</span></span><br><span class="line"><span class="string">            scanType: ["</span>qrCode<span class="string">", "</span>barCode<span class="string">"], // 可以指定扫二维码还是一维码，默认二者都有</span></span><br><span class="line"><span class="string">            success: function (res) &#123;</span></span><br><span class="line"><span class="string">              var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果</span></span><br><span class="line"><span class="string">            &#125;</span></span><br><span class="line"><span class="string">          &#125;);</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">      &#125;</span></span><br><span class="line"><span class="string">    &#125;)</span></span><br><span class="line"><span class="string">  &lt;/script&gt;</span></span><br><span class="line"><span class="string">&lt;/body&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;/html&gt;</span></span><br></pre></td></tr></table></figure></li></ul></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;strong&gt;微信授权&lt;/strong&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="WeChat" scheme="http://example.com/tags/WeChat/"/>
+    
+    <category term="后端" scheme="http://example.com/tags/后端/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mvvm与mvc</title>
+    <link href="http://example.com/2022/03/03/mvvm%E4%B8%8Emvc/"/>
+    <id>http://example.com/2022/03/03/mvvm%E4%B8%8Emvc/</id>
+    <published>2022-03-03T09:55:05.000Z</published>
+    <updated>2022-07-23T12:49:21.299Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>mvc一般是后端的概念，mvvm是前端的概念</strong></p><a id="more"></a><p><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/6/9/16b3b5946e265f2d~tplv-t2oaga2asx-watermark.awebp" alt="mvvm与mvc的区别"></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;strong&gt;mvc一般是后端的概念，mvvm是前端的概念&lt;/strong&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="js" scheme="http://example.com/tags/js/"/>
+    
+    <category term="前端" scheme="http://example.com/tags/前端/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>事件循环(eventLoop)</title>
+    <link href="http://example.com/2022/03/03/%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6-eventLoop/"/>
+    <id>http://example.com/2022/03/03/%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6-eventLoop/</id>
+    <published>2022-03-03T09:01:37.000Z</published>
+    <updated>2022-07-23T12:47:38.149Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li><p>宏任务与微任务</p><a id="more"></a><blockquote><p>微任务执行完成后会将线程控制权归还给浏览器，等线程控制器再次到js时，才会去执行宏任务，所以同一层级的微任务比宏任务先执行。</p></blockquote><ul><li><p>宏任务</p><blockquote><p>常见的定时器，用户交互事件，脚本标签</p></blockquote></li><li><p>微任务</p><blockquote><p>Promise</p></blockquote></li></ul></li><li><p><code>Event Loop</code></p><blockquote><ol><li>从 宏任务 队列（例如 “script”）中出队（dequeue）并执行最早的任务</li><li>执行所有 微任务</li><li>如果有变更，则将变更渲染出来</li><li>如果宏任务队列为空，则休眠直到出现宏任务</li><li>转至步骤1</li></ol></blockquote> <img src="https://gitee.com/buxiaoxing/image-bed/raw/master/img/image-20220228180358392.png" width="500px"></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;宏任务与微任务&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;</summary>
+    
+    
+    
+    
+    <category term="js" scheme="http://example.com/tags/js/"/>
+    
+    <category term="前端" scheme="http://example.com/tags/前端/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>服务端渲染与客户端渲染</title>
+    <link href="http://example.com/2022/03/03/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93%E4%B8%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%B8%B2%E6%9F%93/"/>
+    <id>http://example.com/2022/03/03/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93%E4%B8%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%B8%B2%E6%9F%93/</id>
+    <published>2022-03-03T08:48:30.000Z</published>
+    <updated>2022-07-23T12:47:04.920Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://github.com/yacan8/blog/issues/30" target="_blank" rel="noopener">参考链接</a></p><a id="more"></a><p><img src="https://gitee.com/buxiaoxing/image-bed/raw/master/img/image-20220217174533436.png" alt="image-20220217174533436"><br><strong>客户端渲染的问题</strong></p><ul><li>SEO问题（由于浏览器拿到的一个空的HTML文件，搜索引擎并不知道你的网页是干嘛的）<blockquote><p>SEO就是搜索引擎通过爬虫来爬你的页面，爬虫也分低级爬虫和高级爬虫</p><ul><li>低级爬虫：只请求URL，URL返回的HTML是什么内容就爬什么（SPA想哭）</li><li>高级爬虫：请求URL，加载并执行JavaScript脚本渲染页面，爬js渲染后的内容</li></ul><p>目前各大浏览器还有很大一部分爬虫是属于低级爬虫</p></blockquote></li><li>首屏白屏时间长，在js执行完成之前，页面都处于白屏阶段</li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://github.com/yacan8/blog/issues/30&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;参考链接&lt;/a&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="前端" scheme="http://example.com/tags/前端/"/>
+    
+    <category term="性能" scheme="http://example.com/tags/性能/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>页面渲染流程</title>
+    <link href="http://example.com/2022/02/21/%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/"/>
+    <id>http://example.com/2022/02/21/%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/</id>
+    <published>2022-02-21T11:28:52.000Z</published>
+    <updated>2022-07-23T12:48:27.639Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li>浏览器通过请求得到一个HTML文本</li><li>渲染进程解析HTML文本，构建DOM树<a id="more"></a></li><li>解析HTML的同时，如果遇到内联样式或者样式脚本，则下载并构建样式规则（stytle rules），若遇到JavaScript脚本，则会下载执行脚本。（下载样式脚本是异步的，js脚本默认不是异步的，会阻塞页面渲染）</li><li>DOM树和样式规则构建完成之后，渲染进程将两者合并成渲染树（render tree）</li><li>渲染进程开始对渲染树进行布局，计算元素的几何信息，生成布局树（layout tree）（第一次叫布局，后面叫回流）</li><li>渲染进程对布局树进行绘制，生成绘制记录（第一次叫绘制，后面就叫重绘）</li><li>渲染进程的对布局树进行分层，分别栅格化每一层，并得到合成帧</li><li>渲染进程将合成帧信息发送给GPU进程显示到页面中</li></ol><p><strong>浏览器对回流重绘的优化</strong></p><blockquote><p>由于每次重排都会造成额外的计算消耗，因此大多数浏览器都会通过队列化修改并批量执行来优化重排过程。浏览器会将修改操作放入到队列里，直到过了一段时间或者操作达到了一个阈值，才清空队列。但是！<strong>当你获取布局信息的操作的时候，会强制队列刷新</strong>，比如当你访问以下属性或者使用以下方法</p><ul><li>offsetTop、offsetLeft、offsetWidth、offsetHeight</li><li>scrollTop、scrollLeft、scrollWidth、scrollHeight</li><li>clientTop、clientLeft、clientWidth、clientHeight</li><li>getComputedStyle()</li></ul><p>以上属性和方法都需要返回最新的布局信息，因此浏览器不得不清空队列，触发回流重绘来返回正确的值。因此，我们在修改样式的时候，<strong>最好避免使用上面列出的属性，他们都会刷新渲染队列。</strong>如果要使用它们，最好将值缓存起来</p></blockquote><p><strong>最小化重绘与重排</strong></p><blockquote><p>减少发生次数，合并多次对dom和样式的修改，由于浏览器对回流与重绘的优化，这个很少考虑</p></blockquote><p><strong>避免触发同步布局事件</strong></p><blockquote><p>获取布局信息的操作的信息的时候，会导致浏览器强制刷新队列，减少调用布局信息的api，将值缓存起来。</p></blockquote><p><strong>复杂动画，脱离文档流</strong></p><blockquote><p>动画会经常引起重排与重绘，让其脱离文档流，减少其他元素的重排与重绘</p></blockquote><p><strong>css3硬件加速(GPU加速)</strong></p><blockquote><p>利用GPU来代替浏览器的渲染引擎，<strong>transform、opacity、filters</strong> 会开启硬件加速，并不会导致回流与重绘。</p></blockquote>]]></content>
+    
+    
+    <summary type="html">&lt;ol&gt;
+&lt;li&gt;浏览器通过请求得到一个HTML文本&lt;/li&gt;
+&lt;li&gt;渲染进程解析HTML文本，构建DOM树&lt;/li&gt;&lt;/ol&gt;</summary>
+    
+    
+    
+    
+    <category term="前端" scheme="http://example.com/tags/前端/"/>
+    
+    <category term="性能" scheme="http://example.com/tags/性能/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>原型的理解</title>
+    <link href="http://example.com/2022/02/21/%E5%8E%9F%E5%9E%8B%E7%9A%84%E7%90%86%E8%A7%A3/"/>
+    <id>http://example.com/2022/02/21/%E5%8E%9F%E5%9E%8B%E7%9A%84%E7%90%86%E8%A7%A3/</id>
+    <published>2022-02-21T11:18:58.000Z</published>
+    <updated>2022-07-23T12:48:34.444Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>原型是一种机制</strong></p><a id="more"></a><blockquote><p>每个构造函数默认会有一个prototype属性，这是一个对象，构造函数把想要公开的属性放在里面，构造函数的实例的<br><code>__proto__</code> 属性也指向这个对象。访问实例上的属性时，如果实例上没有，就会去 <code>__proto__</code> 指向的对象找，递归寻找，直到null为止</p><p>所谓继承就是对象的 <code>__proto__</code> 属性 指向另一个构造函数的 prototype。</p></blockquote><p><img src="https://gitee.com/buxiaoxing/image-bed/raw/master/img/image-20220216185358114.png" alt="image-20220216185358114"></p><p><img src="https://gitee.com/buxiaoxing/image-bed/raw/master/img/image-20220216190504211.png" alt="image-20220216190504211"></p><p><img src="https://gitee.com/buxiaoxing/image-bed/raw/master/img/image-20220216190625855.png" alt="image-20220216190625855"></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;strong&gt;原型是一种机制&lt;/strong&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="js" scheme="http://example.com/tags/js/"/>
+    
+    <category term="前端" scheme="http://example.com/tags/前端/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>css兼容问题</title>
+    <link href="http://example.com/2022/02/04/css%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98/"/>
+    <id>http://example.com/2022/02/04/css%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98/</id>
+    <published>2022-02-04T04:47:55.000Z</published>
+    <updated>2022-07-23T12:48:55.663Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li><p>浏览器兼容问题</p><a id="more"></a><ul><li><p>hack</p><ol><li><p>火狐浏览器hack写法</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 火狐浏览器样式兼容</span><br><span class="line"><span class="keyword">@-moz-document</span> url-prefix() &#123;</span><br><span class="line">    <span class="selector-class">.vjs-slider-vertical</span> <span class="selector-class">.vjs-volume-level</span><span class="selector-pseudo">:before</span> &#123;</span><br><span class="line">        <span class="attribute">left</span>: -<span class="number">0.3em</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="selector-class">.video-js</span> <span class="selector-class">.vjs-play-progress</span><span class="selector-pseudo">::before</span> &#123;</span><br><span class="line">        <span class="attribute">top</span>: -<span class="number">0.1em</span>;</span><br><span class="line">        <span class="attribute">font-size</span>: <span class="number">1em</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p>safari浏览器hack写法</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//safari浏览器样式兼容</span><br><span class="line"><span class="keyword">@media</span> <span class="keyword">not</span> all <span class="keyword">and</span> (<span class="attribute">min-resolution:</span>.<span class="number">001dpcm</span>) &#123;</span><br><span class="line">    <span class="keyword">@supports</span> (<span class="attribute">-webkit-appearance:</span>none) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="selector-class">.vjs-slider-vertical</span> <span class="selector-class">.vjs-volume-level</span><span class="selector-pseudo">:before</span> &#123;</span><br><span class="line">            <span class="attribute">left</span>: -<span class="number">0.4em</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ol></li><li><p>样式覆盖</p></li><li><p>css前缀</p></li></ul></li><li><p>移动端兼容问题</p><ul><li><p><code>@media</code></p></li><li><p>判断 <code>pc</code> 端还是移动端</p><ol><li> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/Mobi|Android|iPhone/i.test(navigator.userAgent); <span class="comment">//不可靠，userAgent字段可修改</span></span><br></pre></td></tr></table></figure></li><li> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> isMobile = navigator.userAgentData.mobile; <span class="comment">//safari，Firefox不支持</span></span><br></pre></td></tr></table></figure></li><li> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/Android|iPhone|iPad|iPod/i.test(navigator.platform)<span class="comment">// 已废弃，但所有浏览器都支持</span></span><br></pre></td></tr></table></figure></li><li><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="built_in">window</span>.screen.width&lt;<span class="number">500</span>)&#123;</span><br><span class="line">    <span class="comment">// 通过屏幕宽度判断</span></span><br><span class="line">    <span class="comment">//移动设备（横屏无法识别）</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">typeof</span> <span class="built_in">window</span>.orientation !== <span class="string">'undefined'</span>)&#123;</span><br><span class="line">    <span class="comment">// 当前设备时移动设备（只有移动设备有orientation这个侦测屏幕方向的属性）</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isMobile</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="string">'ontouchstart'</span> <span class="keyword">in</span> <span class="built_in">document</span>.documentElement) <span class="comment">// 只有移动设备有触摸事件</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ol></li></ul></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;浏览器兼容问题&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;</summary>
+    
+    
+    
+    
+    <category term="浏览器" scheme="http://example.com/tags/浏览器/"/>
+    
+    <category term="前端" scheme="http://example.com/tags/前端/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>引言摘录003</title>
+    <link href="http://example.com/2022/01/31/%E5%BC%95%E8%A8%80%E6%91%98%E5%BD%95003/"/>
+    <id>http://example.com/2022/01/31/%E5%BC%95%E8%A8%80%E6%91%98%E5%BD%95003/</id>
+    <published>2022-01-31T09:12:22.000Z</published>
+    <updated>2022-06-10T09:21:14.820Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li><p><strong>一个人真正的成功，不是在他辉煌的时候有多么辉煌，关键在于你面对挫折的时候，在你低迷的时候，你是不是依然有勇气继续前行</strong></p><a id="more"></a><p>—— 罗翔，人大刑法教授</p></li><li><p><strong>对于可控的事情要保持谨慎，对于不可控的事情要保持乐观</strong></p><p>—— 罗翔，人大刑法教授</p></li><li><p><strong>我们每个人都生活在各自的过去中，人们会用一分钟的时间去认识一个人，用一个小时的时间去喜欢一个人，在用一天的时间去爱上一个人，到最后，却要用一辈子的时间去忘记一个人</strong></p><p>——《廊桥遗梦》</p></li><li><p><strong>我差一点就碰到月亮了，可惜天却亮了</strong></p><p>——佚名</p></li><li><p><strong>关于你的记忆，就像18岁那年的蝉鸣，点燃了整个夏天，却又消无声息的湮灭</strong></p><p>——B站</p></li><li><p><strong>他活着为你牺牲，死了还会害你不成？</strong></p><p>——B站评论</p></li><li><p><strong>妈妈只是提前去安顿你下辈子了，就像这辈子也是她先来一样。</strong></p><p>——B站评论</p></li><li><p><strong>用你的生活来定义浪漫，不要用浪漫来填充它</strong></p><p>——B站评论</p></li><li><p><strong>少年是元气淋漓的颓唐和春心荡漾的忧伤</strong></p><p>——B站评论</p></li><li><p><strong>歧视者总是躲在阴暗角落拉帮结派，却终见不得光</strong></p><p>——B站评论</p></li><li><p><strong>一身清贫怎敢入繁华，两袖清风怎敢误佳人</strong></p><p>——《我在人间凑数的日子》</p></li><li><p><strong>她眼角弯弯的样子满足了我对爱情所有的幻想</strong></p><p>——B站用户</p></li><li><p><strong>祝你今天愉快，你明天的愉快我留在明天再祝</strong></p><p>——王小波</p></li><li><p><strong>下雪的时候要跟心爱的人出去走一走，一不小心就牵了手，走着走着就白了头</strong></p><p>——陈昂</p></li><li><p><strong>且将新火试新茶，诗酒趁年华</strong></p><p>——《望江南·超然台作》</p></li><li><p><strong>醉后不知天在水，满船清梦压星河</strong></p><p>——唐珙《题龙阳县青草湖》</p></li><li><p><strong>且挨过三冬四夏，暂受些此痛苦，雪尽后再看梅花</strong></p><p>——吴汝纶《百字铭》</p></li><li><p><strong>随遇而安无不可，人间到处是花香</strong></p><p>——林语堂《京华烟云》</p></li><li><p><strong>君埋泉下泥销骨，我寄人间雪满头</strong></p><p>——白居易《梦微之》</p></li><li><p><strong>最是人间留不住，朱颜辞镜花辞树</strong></p><p>——王国维《蝶恋花》</p></li><li><p><strong>笑渐不闻声渐悄，多情却被无情恼</strong></p><p>——苏轼《蝶恋花》</p></li><li><p><strong>衣带渐宽终不悔，为伊消得人憔悴</strong></p><p>——柳永《蝶恋花》</p></li><li><p><strong>众里寻他千百度，蓦然回首，那人却在，灯火阑珊处</strong></p><p>——辛弃疾《青玉案·元夕》</p></li></ol>]]></content>
+    
+    
+    <summary type="html">&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;一个人真正的成功，不是在他辉煌的时候有多么辉煌，关键在于你面对挫折的时候，在你低迷的时候，你是不是依然有勇气继续前行&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;</summary>
+    
+    
+    
+    
+    <category term="随笔" scheme="http://example.com/tags/随笔/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>进程与线程的区别</title>
+    <link href="http://example.com/2022/01/10/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+    <id>http://example.com/2022/01/10/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB/</id>
+    <published>2022-01-10T08:47:44.000Z</published>
+    <updated>2022-07-23T12:47:27.435Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li><p>进程与线程都是一个时间段的描述，是CPU工作时间段的描述</p><a id="more"></a></li><li><p>CPU很快，当多个任务要执行的时候，CPU是轮流来的</p></li><li><p>执行一段代码，实现一个功能的过程介绍，当得到CPU时，相关的资源必须已经到位，如显卡、GPS等必须就位，然后CPU开始执行，这里除CPU外的所有就构成了程序上下文。当这个程序执行完了，或者分配给他的CPU执行时间用完了，就要被切换出去，等待下一次CPU临幸。被切换出去最后一步工作就是保存程序上下文，这是下次被CPU临幸的运行环境，必须保存。</p><p><code>进程 = 上下文切换的程序执行事件总和 = CPU加载上下文+CPU执行+CPU保存上下文</code></p></li><li><p>程序A得到CPU临幸，CPU加载上下文–&gt;执行程序A的a小段，然后执行A的b小段，然后再执行c小段，最后CPU保存A的上下文。这里的a、b、c的执行共享了A的上下文，CPU在执行的时候没有进行上下文切换，这里的a，b，c就是线程，也就是说线程是共享了进程的上下文环境的更为细小的CPU时间段</p></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;进程与线程都是一个时间段的描述，是CPU工作时间段的描述&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;</summary>
+    
+    
+    
+    
+    <category term="后端" scheme="http://example.com/tags/后端/"/>
+    
+    <category term="服务器" scheme="http://example.com/tags/服务器/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>js防抖与节流</title>
+    <link href="http://example.com/2022/01/10/js%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/"/>
+    <id>http://example.com/2022/01/10/js%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/</id>
+    <published>2022-01-10T08:13:09.000Z</published>
+    <updated>2022-07-23T12:49:11.067Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li><p>防抖</p><a id="more"></a><blockquote><p>触发高频事件后n秒内函数只会执行一次，如果n秒内高频事件再次被触发，则重新计算时间</p></blockquote></li><li><p>节流</p><blockquote><p>高频事件触发，但在n秒内只会执行一次，所以节流会稀释函数的执行频率</p></blockquote><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 节流</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">fn, delay</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> valid = <span class="literal">true</span></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!valid) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">        valid = <span class="literal">false</span></span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            fn()</span><br><span class="line">            valid = <span class="literal">true</span></span><br><span class="line">        &#125;, delay)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 防抖</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">fn, delay</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> timer = <span class="literal">null</span></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (timer) &#123;</span><br><span class="line">            clearTimeout(timer)</span><br><span class="line">        &#125;</span><br><span class="line">        timer = setTimeout(fn, delay)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showTop</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> scrollTop = <span class="built_in">document</span>.body.scrollTop || <span class="built_in">document</span>.documentElement.scrollTop</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"滚动条位置"</span> + scrollTop)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">window</span>.onscroll = throttle(showTop, <span class="number">1000</span>)</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;防抖&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;</summary>
+    
+    
+    
+    
+    <category term="js" scheme="http://example.com/tags/js/"/>
+    
+    <category term="前端" scheme="http://example.com/tags/前端/"/>
+    
+    <category term="性能" scheme="http://example.com/tags/性能/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>输入框的blur事件与click事件冲突</title>
+    <link href="http://example.com/2022/01/10/%E8%BE%93%E5%85%A5%E6%A1%86%E7%9A%84blur%E4%BA%8B%E4%BB%B6%E4%B8%8Eclick%E4%BA%8B%E4%BB%B6%E5%86%B2%E7%AA%81/"/>
+    <id>http://example.com/2022/01/10/%E8%BE%93%E5%85%A5%E6%A1%86%E7%9A%84blur%E4%BA%8B%E4%BB%B6%E4%B8%8Eclick%E4%BA%8B%E4%BB%B6%E5%86%B2%E7%AA%81/</id>
+    <published>2022-01-10T08:05:35.000Z</published>
+    <updated>2022-07-23T12:47:43.645Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>原因：blur 事件在 click 之前触发</p></blockquote><a id="more"></a><p><strong>solution</strong></p><ul><li><p>延时</p></li><li><p>可以在mousedown上阻止blur事件发生，然后再在click事件上触发blur事件</p></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;原因：blur 事件在 click 之前触发&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    
+    <category term="js" scheme="http://example.com/tags/js/"/>
+    
+    <category term="前端" scheme="http://example.com/tags/前端/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>flex布局中between的布局问题</title>
+    <link href="http://example.com/2022/01/10/flex%E5%B8%83%E5%B1%80%E4%B8%ADbetween%E7%9A%84%E5%B8%83%E5%B1%80%E9%97%AE%E9%A2%98/"/>
+    <id>http://example.com/2022/01/10/flex%E5%B8%83%E5%B1%80%E4%B8%ADbetween%E7%9A%84%E5%B8%83%E5%B1%80%E9%97%AE%E9%A2%98/</id>
+    <published>2022-01-10T07:57:07.000Z</published>
+    <updated>2022-07-23T12:49:00.938Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>当出现多行数量不同时，显示问题很大</p></blockquote><a id="more"></a><p>grid 布局可以很好解决该问题</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.wrap</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">display</span>: grid;</span><br><span class="line">    <span class="attribute">grid-template-columns</span>: <span class="built_in">repeat</span>(<span class="number">3</span>, <span class="number">20px</span>);</span><br><span class="line">    <span class="comment">/* grid-column-gap: 20px; */</span></span><br><span class="line">    <span class="attribute">row-gap</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="comment">/* justify-items: start center end; */</span></span><br><span class="line">    <span class="attribute">justify-content</span>: space-between;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#eee</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.wrap</span>&gt;<span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">background</span>: red;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p> <img src="https://gitee.com/buxiaoxing/image-bed/raw/master/img/image-20211026143939097.png" alt="image-20211026143939097"></p>]]></content>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;当出现多行数量不同时，显示问题很大&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    
+    <category term="前端" scheme="http://example.com/tags/前端/"/>
+    
+    <category term="css" scheme="http://example.com/tags/css/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>常见浏览器样式兼容hack写法</title>
+    <link href="http://example.com/2022/01/10/%E5%B8%B8%E8%A7%81%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A0%B7%E5%BC%8F%E5%85%BC%E5%AE%B9hack%E5%86%99%E6%B3%95/"/>
+    <id>http://example.com/2022/01/10/%E5%B8%B8%E8%A7%81%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A0%B7%E5%BC%8F%E5%85%BC%E5%AE%B9hack%E5%86%99%E6%B3%95/</id>
+    <published>2022-01-10T07:52:55.000Z</published>
+    <updated>2022-07-23T12:47:19.790Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li><p>火狐浏览器hack写法</p>  <a id="more"></a>  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 火狐浏览器样式兼容</span><br><span class="line"><span class="keyword">@-moz-document</span> url-prefix() &#123;</span><br><span class="line">    <span class="selector-class">.vjs-slider-vertical</span> <span class="selector-class">.vjs-volume-level</span><span class="selector-pseudo">:before</span> &#123;</span><br><span class="line">        <span class="attribute">left</span>: -<span class="number">0.3em</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="selector-class">.video-js</span> <span class="selector-class">.vjs-play-progress</span><span class="selector-pseudo">::before</span> &#123;</span><br><span class="line">        <span class="attribute">top</span>: -<span class="number">0.1em</span>;</span><br><span class="line">        <span class="attribute">font-size</span>: <span class="number">1em</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p>safari浏览器hack写法</p>  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//safari浏览器样式兼容</span><br><span class="line"><span class="keyword">@media</span> <span class="keyword">not</span> all <span class="keyword">and</span> (<span class="attribute">min-resolution:</span>.<span class="number">001dpcm</span>) &#123;</span><br><span class="line">    <span class="keyword">@supports</span> (<span class="attribute">-webkit-appearance:</span>none) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="selector-class">.vjs-slider-vertical</span> <span class="selector-class">.vjs-volume-level</span><span class="selector-pseudo">:before</span> &#123;</span><br><span class="line">            <span class="attribute">left</span>: -<span class="number">0.4em</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;火狐浏览器hack写法&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;</summary>
+    
+    
+    
+    
+    <category term="浏览器" scheme="http://example.com/tags/浏览器/"/>
+    
+    <category term="前端" scheme="http://example.com/tags/前端/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>safari日期格式化NaN问题</title>
+    <link href="http://example.com/2022/01/10/safari%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F%E5%8C%96NaN%E9%97%AE%E9%A2%98/"/>
+    <id>http://example.com/2022/01/10/safari%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F%E5%8C%96NaN%E9%97%AE%E9%A2%98/</id>
+    <published>2022-01-10T07:46:24.000Z</published>
+    <updated>2022-07-23T12:49:35.818Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>safari浏览器只认识 <code>年/月/日</code> 的日期格式，不认识 <code>年-月-日</code> <code>年.月.日</code> 的格式</p></blockquote><a id="more"></a><p>如果遇到不认识的日期格式，就会出现 NaN。</p>]]></content>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;safari浏览器只认识 &lt;code&gt;年/月/日&lt;/code&gt; 的日期格式，不认识 &lt;code&gt;年-月-日&lt;/code&gt; &lt;code&gt;年.月.日&lt;/code&gt; 的格式&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    
+    <category term="浏览器" scheme="http://example.com/tags/浏览器/"/>
+    
+    <category term="前端" scheme="http://example.com/tags/前端/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>字符串匹配算法--BF</title>
+    <link href="http://example.com/2022/01/08/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95-BF/"/>
+    <id>http://example.com/2022/01/08/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95-BF/</id>
+    <published>2022-01-08T07:35:03.000Z</published>
+    <updated>2022-07-23T11:08:49.039Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li><p>BF算法又称暴力算法，非常容易理解，同时效率也很低</p></li><li><p>实现步骤</p><a id="more"></a><p>(1) 给定子串与主串<br>(2) 在主串上从头开始选取与子串等长的模式串<br>(3) 比较模式串与字串，如果不相等，则模式串后移一位<br>(4) 当模式串移动到某个位置，每个字符都是匹配时，比较结束</p></li><li><p>代码示例</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> s1 主串</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> s2 字串</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span>  成功匹配第一个字符的位置，匹配失败返回 -1</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">bF</span><span class="params">(String s1, String s2)</span></span>&#123;</span><br><span class="line">    <span class="keyword">char</span>[] arr1 = s1.toCharArray();</span><br><span class="line">    <span class="keyword">char</span>[] arr2 = s2.toCharArray();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=arr1.length-arr2.length;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> pos = i;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;arr2.length;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arr1[pos]!=arr2[j])&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(j==arr2.length-<span class="number">1</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> i;</span><br><span class="line">            &#125;</span><br><span class="line">            pos++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;BF算法又称暴力算法，非常容易理解，同时效率也很低&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;实现步骤&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;</summary>
+    
+    
+    
+    
+    <category term="算法" scheme="http://example.com/tags/算法/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Vue computed与methods的区别</title>
+    <link href="http://example.com/2022/01/08/Vue-computed%E4%B8%8Emethods%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+    <id>http://example.com/2022/01/08/Vue-computed%E4%B8%8Emethods%E7%9A%84%E5%8C%BA%E5%88%AB/</id>
+    <published>2022-01-08T07:22:51.000Z</published>
+    <updated>2022-07-23T12:49:39.600Z</updated>
+    
+    <content type="html"><![CDATA[<p>请看下面代码</p><a id="more"></a><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;getFullName()&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;fullName&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> vue = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">        el: <span class="string">'#app'</span>,</span></span><br><span class="line">        data: &#123;</span><br><span class="line"><span class="javascript">            firstName: <span class="string">'张'</span>,</span></span><br><span class="line"><span class="javascript">            lastName: <span class="string">'三'</span></span></span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            getFullName()&#123;</span><br><span class="line"><span class="javascript">                <span class="keyword">return</span> <span class="keyword">this</span>.firstName+<span class="string">" "</span>+<span class="keyword">this</span>.lastName</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        computed: &#123;</span><br><span class="line">            fullName()&#123;</span><br><span class="line"><span class="javascript">                <span class="keyword">return</span> <span class="keyword">this</span>.firstName+<span class="string">" "</span>+<span class="keyword">this</span>.lastName</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;getFullName()&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;fullName&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;getFullName()&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;fullName&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;getFullName()&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;fullName&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;getFullName()&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;fullName&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> vue = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">        el: <span class="string">'#app'</span>,</span></span><br><span class="line">        data: &#123;</span><br><span class="line"><span class="javascript">            firstName: <span class="string">'张'</span>,</span></span><br><span class="line"><span class="javascript">            lastName: <span class="string">'三'</span></span></span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            getFullName()&#123;</span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'methods'</span>)</span></span><br><span class="line"><span class="javascript">                <span class="keyword">return</span> <span class="keyword">this</span>.firstName+<span class="string">" "</span>+<span class="keyword">this</span>.lastName</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        computed: &#123;</span><br><span class="line">            fullName()&#123;</span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'computed'</span>)</span></span><br><span class="line"><span class="javascript">                <span class="keyword">return</span> <span class="keyword">this</span>.firstName+<span class="string">" "</span>+<span class="keyword">this</span>.lastName</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure><p><img src="https://img2020.cnblogs.com/blog/1747833/202008/1747833-20200809174442006-1164143714.png" alt></p><ol><li><p>从上面例子中很容易看出，虽然两者都能通过双括号引用，但 methods 需要加括号。</p></li><li><p>当多次调用时，computed 有缓存，如果没有改变，多次引用只会调用一次</p><p>而 methods 没有缓存，每次引用都会调用一次</p><p>所有就对属性计算方面来看， computed 优于 methods</p></li></ol>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;请看下面代码&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="前端" scheme="http://example.com/tags/前端/"/>
+    
+    <category term="vue" scheme="http://example.com/tags/vue/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>主流浏览器js内核</title>
+    <link href="http://example.com/2022/01/08/%E4%B8%BB%E6%B5%81%E6%B5%8F%E8%A7%88%E5%99%A8js%E5%86%85%E6%A0%B8/"/>
+    <id>http://example.com/2022/01/08/%E4%B8%BB%E6%B5%81%E6%B5%8F%E8%A7%88%E5%99%A8js%E5%86%85%E6%A0%B8/</id>
+    <published>2022-01-08T07:20:10.000Z</published>
+    <updated>2022-07-23T12:48:45.617Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>js引擎<a id="more"></a><table><thead><tr><th align="center">浏览器</th><th align="center">JS引擎</th></tr></thead><tbody><tr><td align="center">Firefox</td><td align="center">Spider Monkey</td></tr><tr><td align="center">Chrome</td><td align="center">V8</td></tr><tr><td align="center">Safari</td><td align="center">Nitra/Javascript Core</td></tr><tr><td align="center">IE</td><td align="center">Chakra</td></tr><tr><td align="center">Opera</td><td align="center">Carakan</td></tr></tbody></table></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;js引擎&lt;/li&gt;&lt;/ul&gt;</summary>
+    
+    
+    
+    
+    <category term="浏览器" scheme="http://example.com/tags/浏览器/"/>
+    
+    <category term="前端" scheme="http://example.com/tags/前端/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hexo创建博客并部署到github上</title>
+    <link href="http://example.com/2022/01/08/hexo%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github%E4%B8%8A/"/>
+    <id>http://example.com/2022/01/08/hexo%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github%E4%B8%8A/</id>
+    <published>2022-01-08T07:13:25.000Z</published>
+    <updated>2022-07-23T12:49:05.717Z</updated>
+    
+    <content type="html"><![CDATA[<h5 id="准备环境"><a href="#准备环境" class="headerlink" title="准备环境"></a>准备环境</h5><ul><li><p>下载安装nodejs<br>cmd中输入node -v出现版本号则安装成功</p><a id="more"></a></li><li><p>下载安装git，并配置环境变量</p></li><li><p>npm淘宝镜像包管理器<br><code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code></p><h5 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h5><p><code>cnpm install -g -hexo-cli</code>  </p></li><li><p>验证<br><code>hexo -v</code></p><h5 id="搭建博客"><a href="#搭建博客" class="headerlink" title="搭建博客"></a>搭建博客</h5></li><li><p>创建一个文件夹，所有博客文件都会放在这个文件夹中，出错了，就删掉这个文件夹重来即可</p></li><li><p>在该目录下运行cmd</p></li><li><p>初始化博客<br><code>hexo init</code></p></li><li><p>启动博客<br><code>hexo s</code><br>默认端口为4000</p></li><li><p>创建新的博客<br><code>hexo n &quot;filename&quot;</code><br>也可以直接在source文件夹下直接创建md文件</p></li></ul><h5 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h5><ul><li><p>github上创建一个仓库</p></li><li><p>安装git部署插件<br><code>cnpm install --save hexo-deployer-git</code></p></li><li><p>修改_config.yml文件<br>文件最底部</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/buxiaoxing/buxiaoxing.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure></li><li><p>部署<br><code>hexo d</code><br>输入github用户名和密码</p></li><li><p>输入仓库的地址就能访问</p></li></ul><h5 id="修改主题"><a href="#修改主题" class="headerlink" title="修改主题"></a>修改主题</h5><ul><li><p>添加主题到themes文件夹下</p><ul><li>可以克隆github上的主题<br><code>git clone https://github.com/litten/hexo-theme-yilia.git themes/yilia</code></li></ul></li><li><p>修改_config.yaml文件<br><code>theme: yilia</code></p></li><li><p>清理缓存，重新生成，预览，部署</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure></li></ul><h5 id="hexo常用命令"><a href="#hexo常用命令" class="headerlink" title="hexo常用命令"></a>hexo常用命令</h5><ul><li>初始化<br><code>hexo init</code></li><li>本地启动服务器<br><code>hexo s</code></li><li>新建文件<br><code>hexo n</code></li><li>清理缓存<br><code>hexo clean</code></li><li>修改后重新生成<br><code>hexo g</code></li></ul><h5 id="可能会遇到的问题"><a href="#可能会遇到的问题" class="headerlink" title="可能会遇到的问题"></a>可能会遇到的问题</h5><ul><li><p><code>yilia</code> 主题分页乱码</p><blockquote><p>hexo 版本过高，推荐 3.9.0</p></blockquote></li><li><p><code>hexo g</code> 生成 <code>index.html</code>  文件为空</p><blockquote><p>node 版本过低，更新node，推荐使用 nvm 管理 node 版本</p></blockquote></li></ul>]]></content>
+    
+    
+    <summary type="html">hexo创建博客并部署到github上</summary>
+    
+    
+    
+    
+    <category term="前端" scheme="http://example.com/tags/前端/"/>
+    
+    <category term="hexo" scheme="http://example.com/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>主流浏览器内核</title>
+    <link href="http://example.com/2022/01/06/%E4%B8%BB%E6%B5%81%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E6%A0%B8/"/>
+    <id>http://example.com/2022/01/06/%E4%B8%BB%E6%B5%81%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E6%A0%B8/</id>
+    <published>2022-01-06T07:50:12.000Z</published>
+    <updated>2022-07-23T12:48:39.370Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>渲染引擎  <a id="more"></a><table><thead><tr><th align="center">浏览器</th><th align="center">渲染引擎</th></tr></thead><tbody><tr><td align="center">Firefox</td><td align="center">Gecko</td></tr><tr><td align="center">Chrome</td><td align="center">Webkit/blink</td></tr><tr><td align="center">Safari</td><td align="center">webkit</td></tr><tr><td align="center">IE</td><td align="center">Trident</td></tr><tr><td align="center">Opera</td><td align="center">presto</td></tr></tbody></table></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;渲染引擎&lt;/li&gt;&lt;/ul&gt;</summary>
+    
+    
+    
+    
+    <category term="浏览器" scheme="http://example.com/tags/浏览器/"/>
+    
+    <category term="前端" scheme="http://example.com/tags/前端/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Vue响应式原理</title>
+    <link href="http://example.com/2022/01/06/Vue%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/"/>
+    <id>http://example.com/2022/01/06/Vue%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/</id>
+    <published>2022-01-06T07:48:18.000Z</published>
+    <updated>2022-07-23T12:49:43.097Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li><p>当你把一个普通的 JavaScript 对象传入 Vue 实例作为 data 选项，Vue 将遍历此对象所有的 property，并使用 Object.defineProperty 把这些 property 全部转为 getter/setter。Object.defineProperty 是 ES5 中一个无法 shim 的特性，这也就是 Vue 不支持 IE8 以及更低版本浏览器的原因。</p><a id="more"></a></li><li><p>这些 getter/setter 对用户来说是不可见的，但是在内部它们让 Vue 能够追踪依赖，在 property 被访问和修改时通知变更。这里需要注意的是不同浏览器在控制台打印数据对象时对 getter/setter 的格式化并不同，所以建议安装 vue-devtools 来获取对检查数据更加友好的用户界面。</p></li><li><p>每个组件实例都对应一个 watcher 实例，它会在组件渲染的过程中把“接触”过的数据 property 记录为依赖。之后当依赖项的 setter 触发时，会通知 watcher，从而使它关联的组件重新渲染。</p></li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> data = &#123;<span class="attr">price</span>:<span class="number">5</span>, <span class="attr">quantity</span>:<span class="number">2</span>&#125;</span><br><span class="line"><span class="keyword">let</span> target, total, salePrice</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dep</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>()&#123;</span><br><span class="line">        <span class="keyword">this</span>.subscribers=[]</span><br><span class="line">    &#125;</span><br><span class="line">    depend()&#123;</span><br><span class="line">        <span class="keyword">if</span>(target &amp;&amp; !<span class="keyword">this</span>.subscribers.includes(target))&#123;</span><br><span class="line">            <span class="keyword">this</span>.subscribers.push(target)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    notify()&#123;</span><br><span class="line">        <span class="keyword">this</span>.subscribers.forEach(<span class="function"><span class="params">sub</span>=&gt;</span>sub())</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.keys(data).forEach(<span class="function"><span class="params">key</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> internalValue = data[key]</span><br><span class="line">    <span class="keyword">const</span> dep = <span class="keyword">new</span> Dep()</span><br><span class="line">    <span class="built_in">Object</span>.defineProperty(data, key, &#123;</span><br><span class="line">        <span class="keyword">get</span>()&#123;</span><br><span class="line">            dep.depend()    <span class="comment">//remember the target we're running</span></span><br><span class="line">            <span class="keyword">return</span> internalValue</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="keyword">set</span>(newVal)&#123;</span><br><span class="line">            internalValue = newVal</span><br><span class="line">            dep.notify()    <span class="comment">//run saved targets</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">watcher</span>(<span class="params">myFunc</span>)</span>&#123;</span><br><span class="line">    target = myFunc</span><br><span class="line">    target()</span><br><span class="line">    target = <span class="literal">null</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">watcher(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    total = data.price * data.quantity</span><br><span class="line">&#125;)</span><br><span class="line">watcher(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    salePrice = data.price * <span class="number">0.9</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p> <img src="https://gitee.com/buxiaoxing/image-bed/raw/master/img/20201023085214.png" alt></p>]]></content>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;当你把一个普通的 JavaScript 对象传入 Vue 实例作为 data 选项，Vue 将遍历此对象所有的 property，并使用 Object.defineProperty 把这些 property 全部转为 getter/setter。Object.defineProperty 是 ES5 中一个无法 shim 的特性，这也就是 Vue 不支持 IE8 以及更低版本浏览器的原因。&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;</summary>
+    
+    
+    
+    
+    <category term="前端" scheme="http://example.com/tags/前端/"/>
+    
+    <category term="vue" scheme="http://example.com/tags/vue/"/>
+    
+  </entry>
+  
+</feed>
