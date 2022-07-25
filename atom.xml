@@ -6,7 +6,7 @@
   <link href="https://blog.buxiaoxing.com/atom.xml" rel="self"/>
   
   <link href="https://blog.buxiaoxing.com/"/>
-  <updated>2022-07-25T07:26:54.176Z</updated>
+  <updated>2022-07-25T09:18:10.384Z</updated>
   <id>https://blog.buxiaoxing.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>免费的ssl证书</title>
+    <link href="https://blog.buxiaoxing.com/2022/07/25/%E5%85%8D%E8%B4%B9%E7%9A%84ssl%E8%AF%81%E4%B9%A6/"/>
+    <id>https://blog.buxiaoxing.com/2022/07/25/%E5%85%8D%E8%B4%B9%E7%9A%84ssl%E8%AF%81%E4%B9%A6/</id>
+    <published>2022-07-25T09:01:24.000Z</published>
+    <updated>2022-07-25T09:18:10.384Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>天生我材必有用，千金散尽还复来</strong></p><a id="more"></a><ul><li><p>证书购买</p><p>使用的是阿里云的SSL证书服务，具体参照下面的教程<br><a href="https://developer.aliyun.com/article/875508?spm=5176.21213303.J_6704733920.15.1b1753c9yTaqcs&scm=20140722.S_community%40%40%E6%96%87%E7%AB%A0%40%40875508._.ID_community%40%40%E6%96%87%E7%AB%A0%40%40875508-RL_ssl%E5%85%8D%E8%B4%B9%E8%AF%81%E4%B9%A6-LOC_main-OR_ser-V_2-P0_3" target="_blank" rel="noopener">阿里云ssl免费证书获取</a></p></li><li><p>我申请证书的主要是因为Chrome无法访问到我在七牛云上配置的图库，导致博客内的图片无法加载，其中的主要原因就是Chrome版本81开始对混合内容进行警告，83开始阻止混合内容的加载和下载，</p><p>简单说就是网站用的https访问，图片却是使用http加载的。于是这里Chrome会做一件事：自动将http加载的数据升格成https进行加载，但是我们知道如果没有配置证书，使用https是没法加载图片的。于是出现了Console中一堆的红色报错<code>Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALI</code>,即<code>资源加载失败，证书错误</code>。</p></li><li><p>证书拿到后将证书下载下来</p> <img src="https://img.buxiaoxing.com/uPic/2022/07/25171312-AipKS6-image-20220725171310937.png" alt="image-20220725171310937" style="zoom: 33%;"></li><li><p>其中包含两个文件</p><p> <img src="http://img.buxiaoxing.com/uPic/2022/07/25171408-CL1ZlZ-image-20220725171406704.png" alt="image-20220725171406704"></p></li><li><p>然后上传到平台上就行，我这边使用的是七牛云，其他平台应该也是大同小异</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/25171520-AVB0Ul-image-20220725171518574.png" alt="image-20220725171518574"></p></li><li><p>备注名随便填，将下载的两个文件的内容分别填入</p><ul><li>*.pem–&gt;证书内容</li><li>*.key—&gt;证书密钥</li></ul></li><li><p>然后部署，托管就行了</p></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;strong&gt;天生我材必有用，千金散尽还复来&lt;/strong&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="后端" scheme="https://blog.buxiaoxing.com/tags/后端/"/>
+    
+    <category term="SSL" scheme="https://blog.buxiaoxing.com/tags/SSL/"/>
+    
+    <category term="https" scheme="https://blog.buxiaoxing.com/tags/https/"/>
+    
+  </entry>
   
   <entry>
     <title>js基础-错误</title>
@@ -184,9 +207,9 @@
     
     
     
-    <category term="node" scheme="https://blog.buxiaoxing.com/tags/node/"/>
-    
     <category term="后端" scheme="https://blog.buxiaoxing.com/tags/后端/"/>
+    
+    <category term="node" scheme="https://blog.buxiaoxing.com/tags/node/"/>
     
     <category term="express" scheme="https://blog.buxiaoxing.com/tags/express/"/>
     
@@ -207,11 +230,11 @@
     
     
     
+    <category term="后端" scheme="https://blog.buxiaoxing.com/tags/后端/"/>
+    
     <category term="前端" scheme="https://blog.buxiaoxing.com/tags/前端/"/>
     
     <category term="npm" scheme="https://blog.buxiaoxing.com/tags/npm/"/>
-    
-    <category term="后端" scheme="https://blog.buxiaoxing.com/tags/后端/"/>
     
     <category term="nodejs" scheme="https://blog.buxiaoxing.com/tags/nodejs/"/>
     
@@ -253,9 +276,9 @@
     
     
     
-    <category term="js" scheme="https://blog.buxiaoxing.com/tags/js/"/>
-    
     <category term="后端" scheme="https://blog.buxiaoxing.com/tags/后端/"/>
+    
+    <category term="js" scheme="https://blog.buxiaoxing.com/tags/js/"/>
     
     <category term="nodejs" scheme="https://blog.buxiaoxing.com/tags/nodejs/"/>
     
@@ -424,27 +447,6 @@
     
     
     <category term="随笔" scheme="https://blog.buxiaoxing.com/tags/随笔/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>进程与线程的区别</title>
-    <link href="https://blog.buxiaoxing.com/2022/01/10/%E5%90%8E%E7%AB%AF/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
-    <id>https://blog.buxiaoxing.com/2022/01/10/%E5%90%8E%E7%AB%AF/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB/</id>
-    <published>2022-01-10T08:47:44.000Z</published>
-    <updated>2022-07-25T07:13:53.686Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>且挨过三冬四夏，暂受些此痛苦，雪尽后再看梅花</strong></p><a id="more"></a><ul><li>进程与线程都是一个时间段的描述，是CPU工作时间段的描述</li></ul><h3 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h3><ul><li><p>进程负责为程序的运行提供必备的环境</p></li><li><p>进程相当于工厂中的车间</p></li><li><p>CPU很快，当多个任务要执行的时候，CPU是轮流来的</p></li><li><p>执行一段代码，实现一个功能的过程介绍，当得到CPU时，相关的资源必须已经到位，如显卡、GPS等必须就位，然后CPU开始执行，这里除CPU外的所有就构成了程序上下文。当这个程序执行完了，或者分配给他的CPU执行时间用完了，就要被切换出去，等待下一次CPU临幸。被切换出去最后一步工作就是保存程序上下文，这是下次被CPU临幸的运行环境，必须保存。</p><p><code>进程 = 上下文切换的程序执行事件总和 = CPU加载上下文+CPU执行+CPU保存上下文</code></p></li></ul><h3 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h3><ul><li><p>计算机中最小的计算单位，负责执行进程中的程序</p></li><li><p>相当于工厂中的工人</p></li><li><p>程序A得到CPU临幸，CPU加载上下文–&gt;执行程序A的a小段，然后执行A的b小段，然后再执行c小段，最后CPU保存A的上下文。这里的a、b、c的执行共享了A的上下文，CPU在执行的时候没有进行上下文切换，这里的a，b，c就是线程，也就是说线程是共享了进程的上下文环境的更为细小的CPU时间段</p></li></ul>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;strong&gt;且挨过三冬四夏，暂受些此痛苦，雪尽后再看梅花&lt;/strong&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="后端" scheme="https://blog.buxiaoxing.com/tags/后端/"/>
-    
-    <category term="服务器" scheme="https://blog.buxiaoxing.com/tags/服务器/"/>
     
   </entry>
   
