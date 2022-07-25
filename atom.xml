@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>布小星的笔记</title>
-  <icon>https://blog.buxiaoxing.com/assets/img/favicon.ico</icon>
+  <icon>https://blog.buxiaoxing.com/assets/img/icon.png</icon>
   <subtitle>I&#39;m thinking...</subtitle>
   <link href="https://blog.buxiaoxing.com/atom.xml" rel="self"/>
   
@@ -161,9 +161,9 @@
     
     
     
-    <category term="前端" scheme="https://blog.buxiaoxing.com/tags/前端/"/>
-    
     <category term="浏览器" scheme="https://blog.buxiaoxing.com/tags/浏览器/"/>
+    
+    <category term="前端" scheme="https://blog.buxiaoxing.com/tags/前端/"/>
     
   </entry>
   
@@ -295,9 +295,9 @@
     
     
     
-    <category term="前端" scheme="https://blog.buxiaoxing.com/tags/前端/"/>
-    
     <category term="浏览器" scheme="https://blog.buxiaoxing.com/tags/浏览器/"/>
+    
+    <category term="前端" scheme="https://blog.buxiaoxing.com/tags/前端/"/>
     
   </entry>
   
@@ -318,9 +318,9 @@
     
     
     
-    <category term="前端" scheme="https://blog.buxiaoxing.com/tags/前端/"/>
-    
     <category term="浏览器" scheme="https://blog.buxiaoxing.com/tags/浏览器/"/>
+    
+    <category term="前端" scheme="https://blog.buxiaoxing.com/tags/前端/"/>
     
   </entry>
   
@@ -383,9 +383,9 @@
     
     
     
-    <category term="前端" scheme="https://blog.buxiaoxing.com/tags/前端/"/>
-    
     <category term="浏览器" scheme="https://blog.buxiaoxing.com/tags/浏览器/"/>
+    
+    <category term="前端" scheme="https://blog.buxiaoxing.com/tags/前端/"/>
     
   </entry>
   
@@ -426,9 +426,9 @@
     
     
     
-    <category term="前端" scheme="https://blog.buxiaoxing.com/tags/前端/"/>
-    
     <category term="浏览器" scheme="https://blog.buxiaoxing.com/tags/浏览器/"/>
+    
+    <category term="前端" scheme="https://blog.buxiaoxing.com/tags/前端/"/>
     
   </entry>
   
