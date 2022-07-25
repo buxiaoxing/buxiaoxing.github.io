@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>布小星</title>
-  
+  <icon>https://blog.buxiaoxing.com/assets/img/favicon.ico</icon>
   <subtitle>I&#39;m thinking...</subtitle>
-  <link href="http://example.com/atom.xml" rel="self"/>
+  <link href="https://blog.buxiaoxing.com/atom.xml" rel="self"/>
   
-  <link href="http://example.com/"/>
+  <link href="https://blog.buxiaoxing.com/"/>
   <updated>2022-07-23T14:32:35.705Z</updated>
-  <id>http://example.com/</id>
+  <id>https://blog.buxiaoxing.com/</id>
   
   <author>
     <name>布小星</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>微信公众号开发</title>
-    <link href="http://example.com/2022/06/10/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E5%BC%80%E5%8F%91/"/>
-    <id>http://example.com/2022/06/10/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E5%BC%80%E5%8F%91/</id>
+    <link href="https://blog.buxiaoxing.com/2022/06/10/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E5%BC%80%E5%8F%91/"/>
+    <id>https://blog.buxiaoxing.com/2022/06/10/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E5%BC%80%E5%8F%91/</id>
     <published>2022-06-10T09:28:52.000Z</published>
     <updated>2022-07-23T14:32:35.705Z</updated>
     
@@ -31,16 +31,16 @@
     
     
     
-    <category term="WeChat" scheme="http://example.com/tags/WeChat/"/>
+    <category term="WeChat" scheme="https://blog.buxiaoxing.com/tags/WeChat/"/>
     
-    <category term="后端" scheme="http://example.com/tags/后端/"/>
+    <category term="后端" scheme="https://blog.buxiaoxing.com/tags/后端/"/>
     
   </entry>
   
   <entry>
     <title>mvvm与mvc</title>
-    <link href="http://example.com/2022/03/03/mvvm%E4%B8%8Emvc/"/>
-    <id>http://example.com/2022/03/03/mvvm%E4%B8%8Emvc/</id>
+    <link href="https://blog.buxiaoxing.com/2022/03/03/mvvm%E4%B8%8Emvc/"/>
+    <id>https://blog.buxiaoxing.com/2022/03/03/mvvm%E4%B8%8Emvc/</id>
     <published>2022-03-03T09:55:05.000Z</published>
     <updated>2022-07-23T12:49:21.299Z</updated>
     
@@ -52,16 +52,16 @@
     
     
     
-    <category term="js" scheme="http://example.com/tags/js/"/>
+    <category term="js" scheme="https://blog.buxiaoxing.com/tags/js/"/>
     
-    <category term="前端" scheme="http://example.com/tags/前端/"/>
+    <category term="前端" scheme="https://blog.buxiaoxing.com/tags/前端/"/>
     
   </entry>
   
   <entry>
     <title>事件循环(eventLoop)</title>
-    <link href="http://example.com/2022/03/03/%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6-eventLoop/"/>
-    <id>http://example.com/2022/03/03/%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6-eventLoop/</id>
+    <link href="https://blog.buxiaoxing.com/2022/03/03/%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6-eventLoop/"/>
+    <id>https://blog.buxiaoxing.com/2022/03/03/%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6-eventLoop/</id>
     <published>2022-03-03T09:01:37.000Z</published>
     <updated>2022-07-23T12:47:38.149Z</updated>
     
@@ -74,16 +74,16 @@
     
     
     
-    <category term="js" scheme="http://example.com/tags/js/"/>
+    <category term="js" scheme="https://blog.buxiaoxing.com/tags/js/"/>
     
-    <category term="前端" scheme="http://example.com/tags/前端/"/>
+    <category term="前端" scheme="https://blog.buxiaoxing.com/tags/前端/"/>
     
   </entry>
   
   <entry>
     <title>服务端渲染与客户端渲染</title>
-    <link href="http://example.com/2022/03/03/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93%E4%B8%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%B8%B2%E6%9F%93/"/>
-    <id>http://example.com/2022/03/03/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93%E4%B8%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%B8%B2%E6%9F%93/</id>
+    <link href="https://blog.buxiaoxing.com/2022/03/03/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93%E4%B8%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%B8%B2%E6%9F%93/"/>
+    <id>https://blog.buxiaoxing.com/2022/03/03/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93%E4%B8%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%B8%B2%E6%9F%93/</id>
     <published>2022-03-03T08:48:30.000Z</published>
     <updated>2022-07-23T12:47:04.920Z</updated>
     
@@ -95,16 +95,16 @@
     
     
     
-    <category term="前端" scheme="http://example.com/tags/前端/"/>
+    <category term="前端" scheme="https://blog.buxiaoxing.com/tags/前端/"/>
     
-    <category term="性能" scheme="http://example.com/tags/性能/"/>
+    <category term="性能" scheme="https://blog.buxiaoxing.com/tags/性能/"/>
     
   </entry>
   
   <entry>
     <title>页面渲染流程</title>
-    <link href="http://example.com/2022/02/21/%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/"/>
-    <id>http://example.com/2022/02/21/%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/</id>
+    <link href="https://blog.buxiaoxing.com/2022/02/21/%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/"/>
+    <id>https://blog.buxiaoxing.com/2022/02/21/%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/</id>
     <published>2022-02-21T11:28:52.000Z</published>
     <updated>2022-07-23T12:48:27.639Z</updated>
     
@@ -118,16 +118,16 @@
     
     
     
-    <category term="前端" scheme="http://example.com/tags/前端/"/>
+    <category term="前端" scheme="https://blog.buxiaoxing.com/tags/前端/"/>
     
-    <category term="性能" scheme="http://example.com/tags/性能/"/>
+    <category term="性能" scheme="https://blog.buxiaoxing.com/tags/性能/"/>
     
   </entry>
   
   <entry>
     <title>原型的理解</title>
-    <link href="http://example.com/2022/02/21/%E5%8E%9F%E5%9E%8B%E7%9A%84%E7%90%86%E8%A7%A3/"/>
-    <id>http://example.com/2022/02/21/%E5%8E%9F%E5%9E%8B%E7%9A%84%E7%90%86%E8%A7%A3/</id>
+    <link href="https://blog.buxiaoxing.com/2022/02/21/%E5%8E%9F%E5%9E%8B%E7%9A%84%E7%90%86%E8%A7%A3/"/>
+    <id>https://blog.buxiaoxing.com/2022/02/21/%E5%8E%9F%E5%9E%8B%E7%9A%84%E7%90%86%E8%A7%A3/</id>
     <published>2022-02-21T11:18:58.000Z</published>
     <updated>2022-07-23T12:48:34.444Z</updated>
     
@@ -139,16 +139,16 @@
     
     
     
-    <category term="js" scheme="http://example.com/tags/js/"/>
+    <category term="js" scheme="https://blog.buxiaoxing.com/tags/js/"/>
     
-    <category term="前端" scheme="http://example.com/tags/前端/"/>
+    <category term="前端" scheme="https://blog.buxiaoxing.com/tags/前端/"/>
     
   </entry>
   
   <entry>
     <title>css兼容问题</title>
-    <link href="http://example.com/2022/02/04/css%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98/"/>
-    <id>http://example.com/2022/02/04/css%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98/</id>
+    <link href="https://blog.buxiaoxing.com/2022/02/04/css%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98/"/>
+    <id>https://blog.buxiaoxing.com/2022/02/04/css%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98/</id>
     <published>2022-02-04T04:47:55.000Z</published>
     <updated>2022-07-23T12:48:55.663Z</updated>
     
@@ -161,16 +161,16 @@
     
     
     
-    <category term="浏览器" scheme="http://example.com/tags/浏览器/"/>
+    <category term="浏览器" scheme="https://blog.buxiaoxing.com/tags/浏览器/"/>
     
-    <category term="前端" scheme="http://example.com/tags/前端/"/>
+    <category term="前端" scheme="https://blog.buxiaoxing.com/tags/前端/"/>
     
   </entry>
   
   <entry>
     <title>引言摘录003</title>
-    <link href="http://example.com/2022/01/31/%E5%BC%95%E8%A8%80%E6%91%98%E5%BD%95003/"/>
-    <id>http://example.com/2022/01/31/%E5%BC%95%E8%A8%80%E6%91%98%E5%BD%95003/</id>
+    <link href="https://blog.buxiaoxing.com/2022/01/31/%E5%BC%95%E8%A8%80%E6%91%98%E5%BD%95003/"/>
+    <id>https://blog.buxiaoxing.com/2022/01/31/%E5%BC%95%E8%A8%80%E6%91%98%E5%BD%95003/</id>
     <published>2022-01-31T09:12:22.000Z</published>
     <updated>2022-06-10T09:21:14.820Z</updated>
     
@@ -183,14 +183,14 @@
     
     
     
-    <category term="随笔" scheme="http://example.com/tags/随笔/"/>
+    <category term="随笔" scheme="https://blog.buxiaoxing.com/tags/随笔/"/>
     
   </entry>
   
   <entry>
     <title>进程与线程的区别</title>
-    <link href="http://example.com/2022/01/10/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
-    <id>http://example.com/2022/01/10/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB/</id>
+    <link href="https://blog.buxiaoxing.com/2022/01/10/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+    <id>https://blog.buxiaoxing.com/2022/01/10/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB/</id>
     <published>2022-01-10T08:47:44.000Z</published>
     <updated>2022-07-23T12:47:27.435Z</updated>
     
@@ -203,16 +203,16 @@
     
     
     
-    <category term="后端" scheme="http://example.com/tags/后端/"/>
+    <category term="后端" scheme="https://blog.buxiaoxing.com/tags/后端/"/>
     
-    <category term="服务器" scheme="http://example.com/tags/服务器/"/>
+    <category term="服务器" scheme="https://blog.buxiaoxing.com/tags/服务器/"/>
     
   </entry>
   
   <entry>
     <title>js防抖与节流</title>
-    <link href="http://example.com/2022/01/10/js%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/"/>
-    <id>http://example.com/2022/01/10/js%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/</id>
+    <link href="https://blog.buxiaoxing.com/2022/01/10/js%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/"/>
+    <id>https://blog.buxiaoxing.com/2022/01/10/js%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/</id>
     <published>2022-01-10T08:13:09.000Z</published>
     <updated>2022-07-23T12:49:11.067Z</updated>
     
@@ -225,18 +225,18 @@
     
     
     
-    <category term="js" scheme="http://example.com/tags/js/"/>
+    <category term="js" scheme="https://blog.buxiaoxing.com/tags/js/"/>
     
-    <category term="前端" scheme="http://example.com/tags/前端/"/>
+    <category term="前端" scheme="https://blog.buxiaoxing.com/tags/前端/"/>
     
-    <category term="性能" scheme="http://example.com/tags/性能/"/>
+    <category term="性能" scheme="https://blog.buxiaoxing.com/tags/性能/"/>
     
   </entry>
   
   <entry>
     <title>输入框的blur事件与click事件冲突</title>
-    <link href="http://example.com/2022/01/10/%E8%BE%93%E5%85%A5%E6%A1%86%E7%9A%84blur%E4%BA%8B%E4%BB%B6%E4%B8%8Eclick%E4%BA%8B%E4%BB%B6%E5%86%B2%E7%AA%81/"/>
-    <id>http://example.com/2022/01/10/%E8%BE%93%E5%85%A5%E6%A1%86%E7%9A%84blur%E4%BA%8B%E4%BB%B6%E4%B8%8Eclick%E4%BA%8B%E4%BB%B6%E5%86%B2%E7%AA%81/</id>
+    <link href="https://blog.buxiaoxing.com/2022/01/10/%E8%BE%93%E5%85%A5%E6%A1%86%E7%9A%84blur%E4%BA%8B%E4%BB%B6%E4%B8%8Eclick%E4%BA%8B%E4%BB%B6%E5%86%B2%E7%AA%81/"/>
+    <id>https://blog.buxiaoxing.com/2022/01/10/%E8%BE%93%E5%85%A5%E6%A1%86%E7%9A%84blur%E4%BA%8B%E4%BB%B6%E4%B8%8Eclick%E4%BA%8B%E4%BB%B6%E5%86%B2%E7%AA%81/</id>
     <published>2022-01-10T08:05:35.000Z</published>
     <updated>2022-07-23T12:47:43.645Z</updated>
     
@@ -250,16 +250,16 @@
     
     
     
-    <category term="js" scheme="http://example.com/tags/js/"/>
+    <category term="js" scheme="https://blog.buxiaoxing.com/tags/js/"/>
     
-    <category term="前端" scheme="http://example.com/tags/前端/"/>
+    <category term="前端" scheme="https://blog.buxiaoxing.com/tags/前端/"/>
     
   </entry>
   
   <entry>
     <title>flex布局中between的布局问题</title>
-    <link href="http://example.com/2022/01/10/flex%E5%B8%83%E5%B1%80%E4%B8%ADbetween%E7%9A%84%E5%B8%83%E5%B1%80%E9%97%AE%E9%A2%98/"/>
-    <id>http://example.com/2022/01/10/flex%E5%B8%83%E5%B1%80%E4%B8%ADbetween%E7%9A%84%E5%B8%83%E5%B1%80%E9%97%AE%E9%A2%98/</id>
+    <link href="https://blog.buxiaoxing.com/2022/01/10/flex%E5%B8%83%E5%B1%80%E4%B8%ADbetween%E7%9A%84%E5%B8%83%E5%B1%80%E9%97%AE%E9%A2%98/"/>
+    <id>https://blog.buxiaoxing.com/2022/01/10/flex%E5%B8%83%E5%B1%80%E4%B8%ADbetween%E7%9A%84%E5%B8%83%E5%B1%80%E9%97%AE%E9%A2%98/</id>
     <published>2022-01-10T07:57:07.000Z</published>
     <updated>2022-07-23T12:49:00.938Z</updated>
     
@@ -273,16 +273,16 @@
     
     
     
-    <category term="前端" scheme="http://example.com/tags/前端/"/>
+    <category term="前端" scheme="https://blog.buxiaoxing.com/tags/前端/"/>
     
-    <category term="css" scheme="http://example.com/tags/css/"/>
+    <category term="css" scheme="https://blog.buxiaoxing.com/tags/css/"/>
     
   </entry>
   
   <entry>
     <title>常见浏览器样式兼容hack写法</title>
-    <link href="http://example.com/2022/01/10/%E5%B8%B8%E8%A7%81%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A0%B7%E5%BC%8F%E5%85%BC%E5%AE%B9hack%E5%86%99%E6%B3%95/"/>
-    <id>http://example.com/2022/01/10/%E5%B8%B8%E8%A7%81%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A0%B7%E5%BC%8F%E5%85%BC%E5%AE%B9hack%E5%86%99%E6%B3%95/</id>
+    <link href="https://blog.buxiaoxing.com/2022/01/10/%E5%B8%B8%E8%A7%81%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A0%B7%E5%BC%8F%E5%85%BC%E5%AE%B9hack%E5%86%99%E6%B3%95/"/>
+    <id>https://blog.buxiaoxing.com/2022/01/10/%E5%B8%B8%E8%A7%81%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A0%B7%E5%BC%8F%E5%85%BC%E5%AE%B9hack%E5%86%99%E6%B3%95/</id>
     <published>2022-01-10T07:52:55.000Z</published>
     <updated>2022-07-23T12:47:19.790Z</updated>
     
@@ -295,16 +295,16 @@
     
     
     
-    <category term="浏览器" scheme="http://example.com/tags/浏览器/"/>
+    <category term="浏览器" scheme="https://blog.buxiaoxing.com/tags/浏览器/"/>
     
-    <category term="前端" scheme="http://example.com/tags/前端/"/>
+    <category term="前端" scheme="https://blog.buxiaoxing.com/tags/前端/"/>
     
   </entry>
   
   <entry>
     <title>safari日期格式化NaN问题</title>
-    <link href="http://example.com/2022/01/10/safari%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F%E5%8C%96NaN%E9%97%AE%E9%A2%98/"/>
-    <id>http://example.com/2022/01/10/safari%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F%E5%8C%96NaN%E9%97%AE%E9%A2%98/</id>
+    <link href="https://blog.buxiaoxing.com/2022/01/10/safari%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F%E5%8C%96NaN%E9%97%AE%E9%A2%98/"/>
+    <id>https://blog.buxiaoxing.com/2022/01/10/safari%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F%E5%8C%96NaN%E9%97%AE%E9%A2%98/</id>
     <published>2022-01-10T07:46:24.000Z</published>
     <updated>2022-07-23T12:49:35.818Z</updated>
     
@@ -318,16 +318,16 @@
     
     
     
-    <category term="浏览器" scheme="http://example.com/tags/浏览器/"/>
+    <category term="浏览器" scheme="https://blog.buxiaoxing.com/tags/浏览器/"/>
     
-    <category term="前端" scheme="http://example.com/tags/前端/"/>
+    <category term="前端" scheme="https://blog.buxiaoxing.com/tags/前端/"/>
     
   </entry>
   
   <entry>
     <title>字符串匹配算法--BF</title>
-    <link href="http://example.com/2022/01/08/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95-BF/"/>
-    <id>http://example.com/2022/01/08/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95-BF/</id>
+    <link href="https://blog.buxiaoxing.com/2022/01/08/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95-BF/"/>
+    <id>https://blog.buxiaoxing.com/2022/01/08/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95-BF/</id>
     <published>2022-01-08T07:35:03.000Z</published>
     <updated>2022-07-23T11:08:49.039Z</updated>
     
@@ -342,14 +342,14 @@
     
     
     
-    <category term="算法" scheme="http://example.com/tags/算法/"/>
+    <category term="算法" scheme="https://blog.buxiaoxing.com/tags/算法/"/>
     
   </entry>
   
   <entry>
     <title>Vue computed与methods的区别</title>
-    <link href="http://example.com/2022/01/08/Vue-computed%E4%B8%8Emethods%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
-    <id>http://example.com/2022/01/08/Vue-computed%E4%B8%8Emethods%E7%9A%84%E5%8C%BA%E5%88%AB/</id>
+    <link href="https://blog.buxiaoxing.com/2022/01/08/Vue-computed%E4%B8%8Emethods%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+    <id>https://blog.buxiaoxing.com/2022/01/08/Vue-computed%E4%B8%8Emethods%E7%9A%84%E5%8C%BA%E5%88%AB/</id>
     <published>2022-01-08T07:22:51.000Z</published>
     <updated>2022-07-23T12:49:39.600Z</updated>
     
@@ -361,16 +361,16 @@
     
     
     
-    <category term="前端" scheme="http://example.com/tags/前端/"/>
+    <category term="前端" scheme="https://blog.buxiaoxing.com/tags/前端/"/>
     
-    <category term="vue" scheme="http://example.com/tags/vue/"/>
+    <category term="vue" scheme="https://blog.buxiaoxing.com/tags/vue/"/>
     
   </entry>
   
   <entry>
     <title>主流浏览器js内核</title>
-    <link href="http://example.com/2022/01/08/%E4%B8%BB%E6%B5%81%E6%B5%8F%E8%A7%88%E5%99%A8js%E5%86%85%E6%A0%B8/"/>
-    <id>http://example.com/2022/01/08/%E4%B8%BB%E6%B5%81%E6%B5%8F%E8%A7%88%E5%99%A8js%E5%86%85%E6%A0%B8/</id>
+    <link href="https://blog.buxiaoxing.com/2022/01/08/%E4%B8%BB%E6%B5%81%E6%B5%8F%E8%A7%88%E5%99%A8js%E5%86%85%E6%A0%B8/"/>
+    <id>https://blog.buxiaoxing.com/2022/01/08/%E4%B8%BB%E6%B5%81%E6%B5%8F%E8%A7%88%E5%99%A8js%E5%86%85%E6%A0%B8/</id>
     <published>2022-01-08T07:20:10.000Z</published>
     <updated>2022-07-23T12:48:45.617Z</updated>
     
@@ -383,16 +383,16 @@
     
     
     
-    <category term="浏览器" scheme="http://example.com/tags/浏览器/"/>
+    <category term="浏览器" scheme="https://blog.buxiaoxing.com/tags/浏览器/"/>
     
-    <category term="前端" scheme="http://example.com/tags/前端/"/>
+    <category term="前端" scheme="https://blog.buxiaoxing.com/tags/前端/"/>
     
   </entry>
   
   <entry>
     <title>hexo创建博客并部署到github上</title>
-    <link href="http://example.com/2022/01/08/hexo%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github%E4%B8%8A/"/>
-    <id>http://example.com/2022/01/08/hexo%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github%E4%B8%8A/</id>
+    <link href="https://blog.buxiaoxing.com/2022/01/08/hexo%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github%E4%B8%8A/"/>
+    <id>https://blog.buxiaoxing.com/2022/01/08/hexo%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github%E4%B8%8A/</id>
     <published>2022-01-08T07:13:25.000Z</published>
     <updated>2022-07-23T12:49:05.717Z</updated>
     
@@ -404,16 +404,16 @@
     
     
     
-    <category term="前端" scheme="http://example.com/tags/前端/"/>
+    <category term="前端" scheme="https://blog.buxiaoxing.com/tags/前端/"/>
     
-    <category term="hexo" scheme="http://example.com/tags/hexo/"/>
+    <category term="hexo" scheme="https://blog.buxiaoxing.com/tags/hexo/"/>
     
   </entry>
   
   <entry>
     <title>主流浏览器内核</title>
-    <link href="http://example.com/2022/01/06/%E4%B8%BB%E6%B5%81%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E6%A0%B8/"/>
-    <id>http://example.com/2022/01/06/%E4%B8%BB%E6%B5%81%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E6%A0%B8/</id>
+    <link href="https://blog.buxiaoxing.com/2022/01/06/%E4%B8%BB%E6%B5%81%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E6%A0%B8/"/>
+    <id>https://blog.buxiaoxing.com/2022/01/06/%E4%B8%BB%E6%B5%81%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E6%A0%B8/</id>
     <published>2022-01-06T07:50:12.000Z</published>
     <updated>2022-07-23T12:48:39.370Z</updated>
     
@@ -426,16 +426,16 @@
     
     
     
-    <category term="浏览器" scheme="http://example.com/tags/浏览器/"/>
+    <category term="浏览器" scheme="https://blog.buxiaoxing.com/tags/浏览器/"/>
     
-    <category term="前端" scheme="http://example.com/tags/前端/"/>
+    <category term="前端" scheme="https://blog.buxiaoxing.com/tags/前端/"/>
     
   </entry>
   
   <entry>
     <title>Vue响应式原理</title>
-    <link href="http://example.com/2022/01/06/Vue%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/"/>
-    <id>http://example.com/2022/01/06/Vue%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/</id>
+    <link href="https://blog.buxiaoxing.com/2022/01/06/Vue%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/"/>
+    <id>https://blog.buxiaoxing.com/2022/01/06/Vue%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/</id>
     <published>2022-01-06T07:48:18.000Z</published>
     <updated>2022-07-23T12:49:43.097Z</updated>
     
@@ -448,9 +448,9 @@
     
     
     
-    <category term="前端" scheme="http://example.com/tags/前端/"/>
+    <category term="前端" scheme="https://blog.buxiaoxing.com/tags/前端/"/>
     
-    <category term="vue" scheme="http://example.com/tags/vue/"/>
+    <category term="vue" scheme="https://blog.buxiaoxing.com/tags/vue/"/>
     
   </entry>
   
