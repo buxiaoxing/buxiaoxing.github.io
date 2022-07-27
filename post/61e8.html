@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://www.buxiaoxing.com">
-  <title>js基础-错误 | 布小星的笔记</title>
+  <title>js基础-继承 | 布小星的笔记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="我知道你总有一天会想我">
-<meta name="keywords" content="js,前端基础">
+  <meta name="description" content="一想到终将是你的路人，便觉得，沦为整个世界的路人。风虽大，却都绕过我灵魂">
+<meta name="keywords" content="前端,js基础,原型">
 <meta property="og:type" content="article">
-<meta property="og:title" content="js基础-错误">
-<meta property="og:url" content="https://www.buxiaoxing.com/post/e4b.html">
+<meta property="og:title" content="js基础-继承">
+<meta property="og:url" content="https://www.buxiaoxing.com/post/61e8.html">
 <meta property="og:site_name" content="布小星的笔记">
-<meta property="og:description" content="我知道你总有一天会想我">
+<meta property="og:description" content="一想到终将是你的路人，便觉得，沦为整个世界的路人。风虽大，却都绕过我灵魂">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2022-07-26T10:01:08.000Z">
+<meta property="og:updated_time" content="2022-07-27T17:13:32.456Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="js基础-错误">
-<meta name="twitter:description" content="我知道你总有一天会想我">
+<meta name="twitter:title" content="js基础-继承">
+<meta name="twitter:description" content="一想到终将是你的路人，便觉得，沦为整个世界的路人。风虽大，却都绕过我灵魂">
   
   
     <link rel="icon" href="/assets/img/favicon.ico">
@@ -180,14 +180,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-前端/js基础-错误" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-前端/js基础-继承" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class=" article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      js基础-错误
+      js基础-继承
     </h1>
   
 
@@ -198,64 +198,32 @@
 				<i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
 	</span>
 
-<a href="/post/e4b.html" class="archive-article-date">
-  	<time datetime="2022-07-25T07:25:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-25</time>
+<a href="/post/61e8.html" class="archive-article-date">
+  	<time datetime="2022-07-27T17:10:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-28</time>
 </a>
   
   </header>
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p><strong>我知道你总有一天会想我</strong></p>
+    <p><strong>一想到终将是你的路人，便觉得，沦为整个世界的路人。风虽大，却都绕过我灵魂</strong></p>
 <a id="more"></a>
 <ul>
-<li><p>错误分两种</p>
-<ul>
-<li>低级错误(语法解析错误)<br>程序在执行前会扫面所有代码，看是否有语法错误，如果有语法错误，代码一行也不会执行<br>一个代码块的语法错误不会影响另一个代码块的运行，代码块：一个script标签，不同代码块能互相应用变量</li>
-<li>逻辑错误<br>执行到该行报错，后面的代码不会执行</li>
-</ul>
+<li><p>原型链模式(传统模式)</p>
+<p>继承了太多容余属性</p>
 </li>
-<li><p><code>Error</code> 实例对象</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> err = <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"出错了"</span>)</span><br><span class="line"><span class="comment">//这个对象有3个属性</span></span><br><span class="line"><span class="comment">//1. message	错误提示信息</span></span><br><span class="line"><span class="comment">//2. name		错误名称</span></span><br><span class="line"><span class="comment">//3. stack		错误的堆栈</span></span><br></pre></td></tr></table></figure>
+<li><p>共有原型    </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//多个对象的原型指向同一对象</span></span><br><span class="line">Father.prototype = obj;</span><br><span class="line">Son.prototype = obj;</span><br><span class="line"><span class="comment">//链型结构      --&gt;         树形结构</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inherit</span>(<span class="params">Target,origin</span>)</span>&#123;</span><br><span class="line">    Target.prototype = Origin.prototype</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li><p>原生错误类型</p>
-<ul>
-<li><p><code>SyntaxError</code>    </p>
-<p>语法错误</p>
-</li>
-<li><p><code>ReferenceError</code>     </p>
-<p>引用不存在变量</p>
-</li>
-<li><p><code>RangeError</code></p>
-<p>值超出有效范围，数组长度，Number值的范围，函数堆栈</p>
-</li>
-<li><p><code>TypeError</code></p>
-<p>类型错误</p>
-</li>
-<li><p><code>URIError</code></p>
-<p>URI相关函数的参数不正确</p>
-</li>
-<li><p><code>EvalError</code></p>
-<p><code>eval</code> 函数没有被正确的执行</p>
+
+
 </li>
 </ul>
-</li>
-<li><p>自定义错误</p>
-<p>继承 Error对象</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">myError.prototype = <span class="keyword">new</span> <span class="built_in">Error</span>()</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>throw</code></p>
-<p>手动中断程序执行，抛出一个错误</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'出错了'</span>)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>try……catch</code></p>
-<p>出现错误，对错误进行处理，程序不会中断</p>
-</li>
-<li><p><code>finally</code></p>
-<p>可以在 <code>try……catch</code> 后添加 <code>finally</code> 代码块，不管是否出现错误，最后都会执行的语句</p>
-</li>
-</ul>
+<p>  <strong>缺点：单独修改一个构造函数的原型另一个构造函数的原型也会受影响</strong></p>
+<ul>
+<li><p>圣杯模式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inherit</span>(<span class="params">Target,Origin</span>)</span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">    f.prototype = Origin.prototype;</span><br><span class="line">    Target.prototype = <span class="keyword">new</span> f();             <span class="comment">//Target的constructor默认指向Origin</span></span><br><span class="line">    Target.prototype.constructor = Target;</span><br><span class="line">    Target.prototype.uber = Origin.prototype;   <span class="comment">//设置一个属性，可以查看真实原型</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> inherit = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> F = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">Target,Origin</span>)</span>&#123;</span><br><span class="line">        F.prototype = Origin.prototype;</span><br><span class="line">        Target.prototype = <span class="keyword">new</span> F();</span><br><span class="line">        Target.prototype.constructor = Target;</span><br><span class="line">        Target.prototype.uber = Origin.prototype;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
 </li>
 </ul>
 
@@ -271,11 +239,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">前端基础</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">js基础</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">原型</a>
         		</li>
       		
 		</ul>
@@ -331,7 +303,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://www.buxiaoxing.com/post/e4b.html" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://www.buxiaoxing.com/post/61e8.html" alt="微信分享二维码">
     </div>
 </div>
 
@@ -345,18 +317,9 @@
 
 <nav id="article-nav">
   
-    <a href="/post/b320.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          免费的ssl证书
-        
-      </div>
-    </a>
   
-  
-    <a href="/post/6f0e.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">js基础-数据类型</div>
+    <a href="/post/5b43.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">serverless部署hexo博客，免费托管在腾讯云上</div>
       <i class="icon-circle-right"></i>
     </a>
   
