@@ -9,14 +9,14 @@
   <title>js基础-call和apply | 布小星的笔记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="少年心动，是仲夏夜的荒原，割不完，烧不尽，长风一吹，野草就连了天">
-<meta name="keywords" content="前端,js,ts,react,vue,java,python,nodejs,算法,考研,IT,商城,成长,心态,随笔">
+<meta name="keywords" content="前端,js基础">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js基础-call和apply">
 <meta property="og:url" content="https://www.buxiaoxing.com/post/b715.html">
 <meta property="og:site_name" content="布小星的笔记">
 <meta property="og:description" content="少年心动，是仲夏夜的荒原，割不完，烧不尽，长风一吹，野草就连了天">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2022-07-27T02:00:55.216Z">
+<meta property="og:updated_time" content="2022-07-27T07:02:44.728Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js基础-call和apply">
 <meta name="twitter:description" content="少年心动，是仲夏夜的荒原，割不完，烧不尽，长风一吹，野草就连了天">
@@ -53,7 +53,7 @@
 		  <h1 class="header-author"><a href="/">布小星</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">I&#39;m thinking...</p>
+		<p class="header-subtitle">写不出惊鸿一场 逃不过碎银几两</p>
 		
 
 		<nav class="header-menu">
@@ -121,7 +121,7 @@
 			  <h1 class="header-author js-header-author">布小星</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>I&#39;m thinking...<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>写不出惊鸿一场 逃不过碎银几两<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -180,8 +180,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<article id="post-js基础-call和apply" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-前端/js基础-call和apply" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class=" article-header">
@@ -194,11 +193,10 @@
 
   
   
-	<!-- 不蒜子统计 -->
+	
 	<span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
 				<i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
 	</span>
-
 
 <a href="/post/b715.html" class="archive-article-date">
   	<time datetime="2022-07-26T17:01:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-27</time>
@@ -235,12 +233,25 @@
   <div class="article-info article-info-index">
     
     
-    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">js基础</a>
+        		</li>
+      		
+		</ul>
+	</div>
 
     
 
     
-    
+
     
     <div class="clearfix"></div>
   </div>
@@ -325,16 +336,19 @@ twikoo.init({
     </div>
   </div>
 	
-		<!-- 不蒜子统计 -->
-		<span id="busuanzi_container_site_pv">
-						本站总访问量<span id="busuanzi_value_site_pv"></span>次
+		<script src="/lib/busuanzi.pure.js"></script>
+		
+		
+		
+		
+		<span id="busuanzi_container_site_pv" style="display:none">
+			本站总访问量<span id="busuanzi_value_site_pv"></span>次	
+						<span class="post-meta-divider" >|</span>
 		</span>
-		<span class="post-meta-divider">|</span>
-		<span id="busuanzi_container_site_uv" style='display:none'>
-						本站访客数<span id="busuanzi_value_site_uv"></span>人
-		</span>
-		<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
+			<span id="busuanzi_container_site_uv" style='display:none'>
+				本站访客数<span id="busuanzi_value_site_uv"></span>人
+			</span>
+		
 </footer>
     </div>
     <script>
@@ -412,11 +426,15 @@ twikoo.init({
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+                <a href="javascript:void(0)" class="js-tag color3">异步</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">前端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -429,10 +447,6 @@ twikoo.init({
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">js基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">异步</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -460,14 +474,6 @@ twikoo.init({
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">npm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">node</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SEO</a>
               </li>
              
@@ -480,6 +486,10 @@ twikoo.init({
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">node</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">后端</a>
               </li>
              
@@ -488,23 +498,15 @@ twikoo.init({
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jwt</a>
+                <a href="javascript:void(0)" class="js-tag color4">npm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">cookie</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">WeChat</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -516,11 +518,23 @@ twikoo.init({
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">服务器</a>
+                <a href="javascript:void(0)" class="js-tag color2">WeChat</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">服务器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jwt</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">cookie</a>
               </li>
             
             <div class="clearfix"></div>
