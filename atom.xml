@@ -6,7 +6,7 @@
   <link href="https://www.buxiaoxing.com/atom.xml" rel="self"/>
   
   <link href="https://www.buxiaoxing.com/"/>
-  <updated>2022-07-27T17:13:32.456Z</updated>
+  <updated>2022-07-28T09:52:47.060Z</updated>
   <id>https://www.buxiaoxing.com/</id>
   
   <author>
@@ -15,6 +15,201 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>js基础-window</title>
+    <link href="https://www.buxiaoxing.com/post/6199.html"/>
+    <id>https://www.buxiaoxing.com/post/6199.html</id>
+    <published>2022-07-28T09:52:13.000Z</published>
+    <updated>2022-07-28T09:52:47.060Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>我坐在树下，等最后一片落叶，就当和你最后的告别</strong></p><a id="more"></a><ul><li>定时器<ul><li>setInterval(执行函数，毫秒数)                                        每过多少毫秒执行一次函数，返回该定时器的唯一标识</li><li>clearInterval(timer)                                                          通过唯一标识终止定时器</li><li>setTimeout(函数，毫秒数)                                               过多少毫秒执行函数，只执行一次，返回该定时器唯一标识</li><li>clearTimeout(timer)</li></ul></li></ul><ul><li><p>滚动条</p><p><code>pageXOffset/pageYOffset</code>                                                  查看滚动距离</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//封装一个兼容的方法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getScrollOffset</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">window</span>.pageXOffset)&#123;</span><br><span class="line">        <span class="keyword">return</span>&#123;</span><br><span class="line">            x: <span class="built_in">window</span>.pageXOffset,</span><br><span class="line">            y: <span class="built_in">window</span>.pageYOffset</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span>&#123;</span><br><span class="line">            x: <span class="built_in">document</span>.body.scrollLeft + <span class="built_in">document</span>.documentElement.scrollLeft,</span><br><span class="line">            y: <span class="built_in">document</span>.body.scrollTop + <span class="built_in">document</span>.documentElement.scollTop</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><code>scoll(x,y)</code>                                让滚动条滚动到指定距离</p><p><code>scollBy(x,y)</code>                            累加滚动距离</p></li><li><p>浏览器窗口大小</p><p><code>innerWidth/innerHeight</code>                            可视区窗口大小</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getViewportOffset</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="number">0</span> &amp;&amp; <span class="built_in">window</span>.innerWidth)&#123;</span><br><span class="line">        <span class="keyword">return</span>&#123;</span><br><span class="line">            x: <span class="built_in">window</span>.innerWidth,</span><br><span class="line">            y: <span class="built_in">window</span>.innerHeight</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">document</span>.compatMode == <span class="string">'BackCompat'</span>)&#123;<span class="comment">//没有头标签 &lt;!DOCTYPE html&gt;，向后兼容模式</span></span><br><span class="line">            <span class="keyword">return</span>&#123;</span><br><span class="line">                x: <span class="built_in">document</span>.body.clientWidth,</span><br><span class="line">                y: <span class="built_in">document</span>.body.clientHeight</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> &#123;</span><br><span class="line">                x: <span class="built_in">document</span>.documentElement.clientWidth,</span><br><span class="line">                y: <span class="built_in">document</span>.documentElement.clientHeight</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><ul><li><p>获取元素样式</p><p><code>getComputedStyle(element,null)   //获取元素样式表</code></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">getComputedStyle(element, <span class="literal">null</span>)<span class="comment">//获取样式表</span></span><br><span class="line"><span class="comment">//a.第二个参数可以传 after/before (获取伪元素)</span></span><br><span class="line"><span class="comment">//b.是经过计算的最终值</span></span><br><span class="line"><span class="comment">//c.该方法只能读取，不能写入</span></span><br><span class="line"><span class="comment">//d.IE8 一下不兼容</span></span><br><span class="line"><span class="comment">//封装一个兼容的方法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getStyle</span>(<span class="params">elem, prop</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">window</span>.getComputedStyle(elem, <span class="literal">null</span>))&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">window</span>.getComputedStyle(elem, <span class="literal">null</span>)[prop]</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> elem.currentStyle[prop]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p>eval</p><p><code>eval(String)</code>                                                执行一个字符串表达式，并返回表达式的值</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">eval</span>(<span class="string">"document.write('123')"</span>)</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;strong&gt;我坐在树下，等最后一片落叶，就当和你最后的告别&lt;/strong&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="前端" scheme="https://www.buxiaoxing.com/tags/前端/"/>
+    
+    <category term="js基础" scheme="https://www.buxiaoxing.com/tags/js基础/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>js基础-Date</title>
+    <link href="https://www.buxiaoxing.com/post/5309.html"/>
+    <id>https://www.buxiaoxing.com/post/5309.html</id>
+    <published>2022-07-28T09:50:51.000Z</published>
+    <updated>2022-07-28T09:52:47.058Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>世界上有两样东西不可直视，一是太阳，二是人心</strong></p><a id="more"></a><ul><li><p>创建日期对象</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>()</span><br><span class="line"><span class="built_in">Date</span>()<span class="comment">//可以直接返回当前时间</span></span><br></pre></td></tr></table></figure></li><li><p>方法</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">getDate()                                 <span class="comment">//返回一月中的某一天</span></span><br><span class="line">getDay()                                  <span class="comment">//返回一周中的第几天  0~6   星期天~星期六</span></span><br><span class="line">getMonth()                                <span class="comment">//返回月份 0~11</span></span><br><span class="line">getFullYear()                             <span class="comment">//返回年份</span></span><br><span class="line">getHours()                                <span class="comment">//时</span></span><br><span class="line">getMinutes()</span><br><span class="line">getSeconds()</span><br><span class="line">getMillseconds()</span><br><span class="line">toString()</span><br><span class="line">getTime()                                 <span class="comment">//1970年1月1日至今的毫秒数</span></span><br></pre></td></tr></table></figure></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;strong&gt;世界上有两样东西不可直视，一是太阳，二是人心&lt;/strong&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="前端" scheme="https://www.buxiaoxing.com/tags/前端/"/>
+    
+    <category term="js基础" scheme="https://www.buxiaoxing.com/tags/js基础/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>js基础-dom</title>
+    <link href="https://www.buxiaoxing.com/post/a964.html"/>
+    <id>https://www.buxiaoxing.com/post/a964.html</id>
+    <published>2022-07-28T09:48:16.000Z</published>
+    <updated>2022-07-28T09:52:47.061Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>曾经拥有的东西被夺走，并不代表就会回到原来没有那种东西的时候</strong></p><a id="more"></a><blockquote><p><strong>文档（html）对象（节点）模型（文档解析为dom树）</strong></p><p>将html解析成一个个节点对象，配合js语法就能操作html</p><p><strong>不仅 js 能操作 dom ，java、php 都能操作 dom</strong></p></blockquote><ul><li><p>节点的增删改查</p><ul><li><p>查</p><ul><li><p>getElementById()                                              当个对象，因为 id 唯一</p></li><li><p>getElementByTagName()                                  通过标签名，查询节点，类数组，                          <code>getElementByTagName(&#39;*&#39;) 选中所有标签</code></p></li><li><p>getElementByClassName()                               通过类名，查询节点，类数组</p></li></ul></li></ul></li></ul><pre><code>- querySelector()                                                   可以通过 css 选择器的方式选择 dom 元素，当个对象- querySelectorAll()                                                对象数组  **注：querySelector 选中的是副本，员 dom 元素改变，选中副本并不会更新**- document.body                                                    直接选中 body 节点- document.head                                                    直接选中 head 节点**节点**  - parentNode                                                             获取父节点  - ChildNodes                                                              获取子节点数组  - firstChild                                                                   第一个子节点  - lastChild                                                                    最后一个子节点  - nextSibling                                                                下一个兄弟节点  - previousSibling                                                         上一个兄弟节点  - hasChildNodes                                                           判断是否有子节点**元素节点**- parentElement                                                             获取父元素节点</code></pre><ul><li>children                                                                          获取子元素节点数组<ul><li>firstElementChild                                                          第一个元素子节点</li><li>lastElementChild                                                            最后一个元素子节点</li><li>nextElementSibling</li><li>previousElementSibling</li><li>setAttribute(‘id’)                                                               获取属性值</li></ul></li></ul><ul><li><p>改</p><ul><li><p>innerHTML                                                                         标签中的内容，可以使HTML结构</p></li><li><p>setAttribute(‘id’, ‘only’)                                                     设置属性</p></li><li><p>preNode.replaceChild(newNode, oldNode)                  替换 oldNode 并把 oldNode 返回出来</p><p><strong>注意，如果 newNode 也是 preNode 的子节点的话，替换后原来 newNode 节点将会被移除</strong></p></li></ul><ul><li><p>增</p><ul><li><p>createElement(“div”)                                                                  创建一个元素节点</p></li><li><p>createTextNode()                                                                         创建文本节点</p></li><li><p>createCommenNode()                                                                 创建注释节点</p></li><li><p>createdocumentFragment()                                                        创建文档碎片节点</p></li><li><p>preNode.appendChild(node)                                                      在子节点的最后添加节点</p></li><li><p>preNode.insertBefore(a,b)                                                           在 b 节点前插入 a 节点</p><p><strong>注意：如果 a 是 preNode的节点的话，那么插入后，原来 a 节点将会被移除</strong></p></li></ul></li><li><p>删</p><ul><li><p>preNode.removeChild(node)                                                  删除父节点下的一个节点，返还回来</p></li><li><p>node.remove()                                                                                 节点自我删除</p></li></ul></li></ul></li></ul><ul><li>节点的类型<ul><li>元素节点                                         1</li><li>属性节点                                         2</li><li>文本节点                                         3</li><li>注释节点                                         8</li><li>document                                      9</li><li>DocumentFragment                    11</li></ul></li></ul><ul><li>节点的属性<ul><li>nodeName                                     节点标签的名称</li><li>nodeValue                                      节点的值（只有文本节点和注释节点才有）</li><li>nodeType                                        返回每个节点对应的数字</li><li>attributes                                         属性节点类数组</li></ul></li></ul><ul><li><p>节点样式数组</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">classList</span><br><span class="line">add()<span class="comment">//增加样式</span></span><br><span class="line">contain()           <span class="comment">//是否包含样式</span></span><br><span class="line">    remove()            <span class="comment">//移除样式</span></span><br></pre></td></tr></table></figure></li></ul><ul><li><p>修改 css 样式</p><p>element.style.属性名 = 属性值                                                      改变查询的是行间样式</p><ul><li>‘-‘链接的属性，改为小驼峰</li><li>float 是保留字，建议 cssFloat</li><li>写入的属性必须是字符串值</li></ul><p><strong>推荐将样式封装到类中，更改样式直接更改 class 就行</strong></p></li></ul><ul><li><p>节点集合</p><ul><li><p>按实时分</p><ul><li>动态集合<ul><li>children</li><li>ChildNode</li><li>getlementByTagName()</li><li>…</li></ul></li><li>静态集合<ul><li>querySelectorAll()   </li></ul></li></ul></li><li><p>按对象分</p><ul><li><p>Nodelist                              能存放所有节点</p><ul><li><p>querySelectorAll()</p></li><li><p>childNodes</p></li><li><p>…</p></li></ul></li><li><p>HTMLConnection              只能存放标签节点</p><ul><li>children</li><li>getElementByTagName</li><li>…</li></ul></li></ul></li></ul></li><li><p>dom 树</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/28174921-bGhbX3-Iuv5qQ.png" alt="image-20201014103030140"></p></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;strong&gt;曾经拥有的东西被夺走，并不代表就会回到原来没有那种东西的时候&lt;/strong&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="前端" scheme="https://www.buxiaoxing.com/tags/前端/"/>
+    
+    <category term="js" scheme="https://www.buxiaoxing.com/tags/js/"/>
+    
+    <category term="浏览器" scheme="https://www.buxiaoxing.com/tags/浏览器/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>js基础-es5.0</title>
+    <link href="https://www.buxiaoxing.com/post/894c.html"/>
+    <id>https://www.buxiaoxing.com/post/894c.html</id>
+    <published>2022-07-28T09:47:07.000Z</published>
+    <updated>2022-07-28T09:52:47.062Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>我的人生就是一本低俗小说，书里不堪的情节越多，我的观众就越欣喜若狂</strong></p><a id="more"></a><ul><li>es5.0 严格模式启用</li></ul><p>​        逻辑最顶端加上 “use strict”</p><ul><li><p>es5.0 严格模式：当与es3.0冲突时，使用 es5.0 规范</p><ul><li><p><code>arguments.callee</code> 就会报错，<code>caller</code> 也不支持</p></li><li><p>变量必须声明</p></li><li><p>预编译 this 没有指向</p></li></ul></li><li><p>with</p><ul><li><p>with 可以改变作用域链，可以将参数对象变为代码作用域链的最顶端，可以用于命名空间，防止全局污染，节省代码</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span>(<span class="built_in">document</span>)&#123;</span><br><span class="line">    write(<span class="string">"1"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul></li></ul><ul><li>缺点：效率低， es5.0 严格模式不支持</li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;strong&gt;我的人生就是一本低俗小说，书里不堪的情节越多，我的观众就越欣喜若狂&lt;/strong&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="前端" scheme="https://www.buxiaoxing.com/tags/前端/"/>
+    
+    <category term="js" scheme="https://www.buxiaoxing.com/tags/js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>js基础-try-catch</title>
+    <link href="https://www.buxiaoxing.com/post/e5b9.html"/>
+    <id>https://www.buxiaoxing.com/post/e5b9.html</id>
+    <published>2022-07-28T09:45:48.000Z</published>
+    <updated>2022-07-28T09:52:47.063Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>一个人自以为刻骨铭心的回忆，别人也许早已经 忘记了</strong></p><a id="more"></a><ul><li><p>使用</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="comment">//要报错的语句</span></span><br><span class="line">&#125;<span class="keyword">catch</span>(e)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(e.name+<span class="string">","</span>+e.message)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><p>  在 try 中发生错误，不会再执行 try 后面的语句，转而执行 catch 语句，不会让程序终止</p><ul><li>报错类型<ul><li><code>EvalError</code>                         eval() 的使用和定义不一致</li><li><code>RangeError</code>                      数组越界</li><li><code>ReferenceError</code>              非法或不能识别的引用数值</li><li><code>SynaxError</code>                       发生语法错误</li><li><code>TypeError</code>                         操作数类型错误</li><li><code>URIError</code>                            URI 处理函数不当</li></ul></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;strong&gt;一个人自以为刻骨铭心的回忆，别人也许早已经 忘记了&lt;/strong&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="前端" scheme="https://www.buxiaoxing.com/tags/前端/"/>
+    
+    <category term="js" scheme="https://www.buxiaoxing.com/tags/js/"/>
+    
+    <category term="error" scheme="https://www.buxiaoxing.com/tags/error/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>js基础-数组</title>
+    <link href="https://www.buxiaoxing.com/post/7101.html"/>
+    <id>https://www.buxiaoxing.com/post/7101.html</id>
+    <published>2022-07-28T09:44:19.000Z</published>
+    <updated>2022-07-28T09:52:47.064Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>我渴望能见你一面，但我清楚的知道，唯有你也想见我的时候，我们的见面才有意义</strong></p><a id="more"></a><ul><li><p>数组的定义方法</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1,2,3,4];</span><br><span class="line">var arr = new Array(1,2,3,4);</span><br><span class="line">两种方法创建的对象没有区别</span><br></pre></td></tr></table></figure><p><strong>注: new array(2)</strong><br>里面只有一个参数代表创建数组的长度</p></li><li><p>数组常用方法</p><ul><li><p>能改变原数组的  </p><ul><li><p>push()<br><code>在数组最后添加元素，多个参数依次添加到最后，返回数组长度</code></p></li><li><p>pop()<br><code>取出数组的最后一位元素，并返回该元素</code></p></li><li><p>unshift()  </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr = [],</span><br><span class="line">arr.unshift(1,2,3)    -&gt;  [1,2,3]而不是[3,2,1]</span><br></pre></td></tr></table></figure></li></ul></li></ul></li></ul><pre><code>- shift()    取出数组第一个元素，并返回该元素- reverse()    `原数组倒序，并返回该数组 `- sort()       升序排序，返回原数组  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//可以自定义排序规则</span></span><br><span class="line"><span class="comment">//1. 必须写两个形参，第一个参数代表前面的数，第二个参数代表后面的数</span></span><br><span class="line"><span class="comment">//2. 返回值为正，后面的数在前面(换位)；返回值为负，前面的数在前面（不动）；0，不动</span></span><br><span class="line">sort(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a-b<span class="comment">//升序</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">sort(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="built_in">Math</span>.random() - <span class="number">0.5</span>)<span class="comment">//乱序</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>- splice(从第几位开始，[截取长度], [在切口处添加新数据])                 --&gt;     返回截取数组，原数组改变  可以使截取长度为0，当做插入方法使用  开始位数可以使用负数        `位数 += 位数 &gt; 0 ? 0:length`</code></pre><ul><li><p>不能改变原数组的方法</p><ul><li><p>concat                链接两个数组，返回一个新数组</p><p><code>var arr = arr1.concat(arr2)</code></p></li><li><p>join( [以什么字符链接] )               将数组中的所有元素放入字符串，默认分隔符为逗号</p></li><li><p>slice( 从该位开始截取, [截取到改位])                 返回截取的数组，不改变原数组</p></li><li><p><code>filter</code></p><blockquote><p>过滤，返回过滤后的数组</p></blockquote><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"><span class="keyword">let</span> newArr = arr.filter(<span class="function"><span class="params">n</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n&lt;=<span class="number">2</span><span class="comment">//参数：回调函数必须返回一个 boolean 值</span></span><br><span class="line">    <span class="comment">//true会添加到返回数组中，false不会添加到返回数组中</span></span><br><span class="line">&#125;)<span class="comment">//[1,2]</span></span><br></pre></td></tr></table></figure></li></ul></li></ul><pre><code>- `map`  &gt; 遍历每个数组元素，返回新数组  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> newArr = arr.map(<span class="function"><span class="params">n</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n*<span class="number">2</span><span class="comment">//回调函数返回一个数组元素</span></span><br><span class="line">&#125;)<span class="comment">//[2,4,6,8]</span></span><br></pre></td></tr></table></figure>- `reduce`  &gt; 汇总  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> sum = arr.reduce(<span class="function">(<span class="params">n1,n2</span>)=&gt;</span>&#123;<span class="comment">//回调函数有两个参数</span></span><br><span class="line">    <span class="keyword">return</span> n1+n2<span class="comment">//参数1：上次回调参数返回的值（第一次调用则是数组首个元素）</span></span><br><span class="line">&#125;)<span class="comment">//参数2：数组第二个元素向后遍历</span></span><br><span class="line"><span class="comment">//10</span></span><br></pre></td></tr></table></figure>- `forEach`  &gt; 遍历每个数组元素，与map相比不会返回新数组- `find`    &gt; 返回符合测试函数条件的第一个元素    和 `filter` 相比， `filter` 返回的是所有符合测试函数条件的数组    而 `find()` 只是返回 `filter` 数组的第一个元素    <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">arr = [</span><br><span class="line">    &#123;<span class="attr">name</span>: <span class="string">'alice'</span>, <span class="attr">age</span>: <span class="number">20</span>, <span class="attr">sex</span>: <span class="string">'女'</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">name</span>: <span class="string">'jack'</span>, <span class="attr">age</span>: <span class="number">18</span>, <span class="attr">sex</span>: <span class="string">'男'</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">name</span>: <span class="string">'bob'</span>, <span class="attr">age</span>: <span class="number">22</span>, <span class="attr">sex</span>: <span class="string">'男'</span>&#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> item = arr.find(<span class="function"><span class="params">element</span> =&gt;</span> (age &lt;= <span class="number">20</span>))</span><br><span class="line"><span class="comment">//&#123;name: 'alice', age: 20, sex: '女'&#125;</span></span><br></pre></td></tr></table></figure>- `every`    &gt; 测试一个数组里所有元素是否都能通过测试，都满足才返回true，否则返回false    <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> flag = arr.every(<span class="function">(<span class="params">item</span>)=&gt;</span>item&lt;<span class="number">40</span>)</span><br></pre></td></tr></table></figure></code></pre><ul><li><p>类数组</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    <span class="string">'0'</span>: <span class="string">'a'</span>,</span><br><span class="line">    <span class="string">'1'</span>: <span class="string">'b'</span>,</span><br><span class="line">    <span class="string">'2'</span>: <span class="string">'c'</span>,</span><br><span class="line">    <span class="string">'length'</span>: <span class="string">'3'</span>,</span><br><span class="line">    <span class="string">'splice'</span>: <span class="string">'Array.prototype.splice'</span>,</span><br><span class="line">    <span class="string">'push'</span>: <span class="string">'Array.prototype.push'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><ul><li>索引必须是数字</li><li>必须有<code>length</code>属性</li><li>最好加上 <code>push</code></li><li>类数组拥有数组和对象的特性</li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;strong&gt;我渴望能见你一面，但我清楚的知道，唯有你也想见我的时候，我们的见面才有意义&lt;/strong&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="前端" scheme="https://www.buxiaoxing.com/tags/前端/"/>
+    
+    <category term="js" scheme="https://www.buxiaoxing.com/tags/js/"/>
+    
+    <category term="数组" scheme="https://www.buxiaoxing.com/tags/数组/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>js基础-this</title>
+    <link href="https://www.buxiaoxing.com/post/cf5e.html"/>
+    <id>https://www.buxiaoxing.com/post/cf5e.html</id>
+    <published>2022-07-28T09:40:56.000Z</published>
+    <updated>2022-07-28T09:52:47.063Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>心若没有栖息的地方，到哪里都是流浪</strong></p><a id="more"></a><ul><li><p>判断this指向</p><ul><li>预编译中this指向window</li><li>全局作用域里this指向window</li><li>call/apply改变this指向</li><li>obj.方法()，谁调用方法，方法中的this就指向谁</li></ul></li><li><p>常出现this指向错误的地方</p><ul><li><p>事件里调用外部变量、函数<br><strong>事件里的this指向的是事件dom元素</strong><br><strong>解决：将外部的this保存在一个变量里</strong></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line"><span class="keyword">this</span>.oGo.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.style.display = <span class="string">"none"</span>;</span><br><span class="line">    self.flag = <span class="literal">true</span>;</span><br><span class="line">    self.move();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul></li></ul><ul><li>作为函数参数传入</li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;strong&gt;心若没有栖息的地方，到哪里都是流浪&lt;/strong&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="前端" scheme="https://www.buxiaoxing.com/tags/前端/"/>
+    
+    <category term="js基础" scheme="https://www.buxiaoxing.com/tags/js基础/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ji基础-枚举</title>
+    <link href="https://www.buxiaoxing.com/post/91c7.html"/>
+    <id>https://www.buxiaoxing.com/post/91c7.html</id>
+    <published>2022-07-28T09:38:58.000Z</published>
+    <updated>2022-07-28T09:52:47.064Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>或许你会想起我，像想起一朵永不重开的花朵</strong></p><a id="more"></a><ul><li><p>for in 循环</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> prop <span class="keyword">in</span> obj)&#123;</span><br><span class="line">    obj[prop];      <span class="comment">//prop就是每个属性的属性名，字符串</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><p>  <strong>遍历对象，会遍历原型链上的属性，但不会延展到Object</strong></p><ul><li><p>hasOwnProperty()</p><p>对象.hasOwnProperty(属性)，判断该属性是不是对象上的属性</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> prop <span class="keyword">in</span> obj)&#123;</span><br><span class="line">    <span class="keyword">if</span>(obj.hasOwnProperty(prop))&#123;</span><br><span class="line">        obj[prop]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><p>  <strong>这样就只会遍历对象自身的对象，而不会遍历原型链上的属性</strong></p><ul><li><p>in 操作符</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//"属性" in 对象      -&gt;      判断对象能否调用该属性，返还一个boolean值</span></span><br></pre></td></tr></table></figure></li></ul><ul><li><p>instanceof</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A instanceof B          -&gt;          A对象的原型链上有没有B的原型，返回一个boolean值</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;strong&gt;或许你会想起我，像想起一朵永不重开的花朵&lt;/strong&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="前端" scheme="https://www.buxiaoxing.com/tags/前端/"/>
+    
+    <category term="js基础" scheme="https://www.buxiaoxing.com/tags/js基础/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>js基础-命名空间</title>
+    <link href="https://www.buxiaoxing.com/post/bbef.html"/>
+    <id>https://www.buxiaoxing.com/post/bbef.html</id>
+    <published>2022-07-28T09:38:00.000Z</published>
+    <updated>2022-07-28T09:52:47.062Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>等到空洞的躯壳上生满了野草，你才想起那被你揉成废纸般丢弃的灵魂</strong></p><a id="more"></a><ul><li><p>命名空间的作用</p><p>防止污染全局变量</p></li><li><p>命名空间的实现方式</p><ul><li>对象<br>将一个功能封装到一个对象中，调用的话对象.属性</li><li>闭包<br>将功能封装到函数中，最后返回一个函数作为接口</li></ul></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;strong&gt;等到空洞的躯壳上生满了野草，你才想起那被你揉成废纸般丢弃的灵魂&lt;/strong&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="前端" scheme="https://www.buxiaoxing.com/tags/前端/"/>
+    
+    <category term="js基础" scheme="https://www.buxiaoxing.com/tags/js基础/"/>
+    
+  </entry>
   
   <entry>
     <title>js基础-继承</title>
@@ -54,9 +249,9 @@
     
     
     
-    <category term="后端" scheme="https://www.buxiaoxing.com/tags/后端/"/>
-    
     <category term="hexo" scheme="https://www.buxiaoxing.com/tags/hexo/"/>
+    
+    <category term="后端" scheme="https://www.buxiaoxing.com/tags/后端/"/>
     
     <category term="部署" scheme="https://www.buxiaoxing.com/tags/部署/"/>
     
@@ -260,207 +455,6 @@
     <category term="前端" scheme="https://www.buxiaoxing.com/tags/前端/"/>
     
     <category term="js基础" scheme="https://www.buxiaoxing.com/tags/js基础/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>免费的ssl证书</title>
-    <link href="https://www.buxiaoxing.com/post/b320.html"/>
-    <id>https://www.buxiaoxing.com/post/b320.html</id>
-    <published>2022-07-25T09:01:24.000Z</published>
-    <updated>2022-07-26T06:57:09.807Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>天生我材必有用，千金散尽还复来</strong></p><a id="more"></a><ul><li><p>证书购买</p><p>使用的是阿里云的SSL证书服务，具体参照下面的教程<br><a href="https://developer.aliyun.com/article/875508?spm=5176.21213303.J_6704733920.15.1b1753c9yTaqcs&scm=20140722.S_community%40%40%E6%96%87%E7%AB%A0%40%40875508._.ID_community%40%40%E6%96%87%E7%AB%A0%40%40875508-RL_ssl%E5%85%8D%E8%B4%B9%E8%AF%81%E4%B9%A6-LOC_main-OR_ser-V_2-P0_3" target="_blank" rel="noopener">阿里云ssl免费证书获取</a></p></li><li><p>我申请证书的主要是因为Chrome无法访问到我在七牛云上配置的图库，导致博客内的图片无法加载，其中的主要原因就是Chrome版本81开始对混合内容进行警告，83开始阻止混合内容的加载和下载，</p><p>简单说就是网站用的https访问，图片却是使用http加载的。于是这里Chrome会做一件事：自动将http加载的数据升格成https进行加载，但是我们知道如果没有配置证书，使用https是没法加载图片的。于是出现了Console中一堆的红色报错<code>Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALI</code>,即<code>资源加载失败，证书错误</code>。</p></li><li><p>证书拿到后将证书下载下来</p> <img src="https://img.buxiaoxing.com/uPic/2022/07/25171312-AipKS6-image-20220725171310937.png" alt="image-20220725171310937" style="zoom: 33%;"></li><li><p>其中包含两个文件</p><p> <img src="http://img.buxiaoxing.com/uPic/2022/07/25171408-CL1ZlZ-image-20220725171406704.png" alt="image-20220725171406704"></p></li><li><p>然后上传到平台上就行，我这边使用的是七牛云，其他平台应该也是大同小异</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/25171520-AVB0Ul-image-20220725171518574.png" alt="image-20220725171518574"></p></li><li><p>备注名随便填，将下载的两个文件的内容分别填入</p><ul><li>*.pem–&gt;证书内容</li><li>*.key—&gt;证书密钥</li></ul></li><li><p>然后部署，托管就行了</p></li></ul>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;strong&gt;天生我材必有用，千金散尽还复来&lt;/strong&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="后端" scheme="https://www.buxiaoxing.com/tags/后端/"/>
-    
-    <category term="SSL" scheme="https://www.buxiaoxing.com/tags/SSL/"/>
-    
-    <category term="https" scheme="https://www.buxiaoxing.com/tags/https/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>js基础-错误</title>
-    <link href="https://www.buxiaoxing.com/post/e4b.html"/>
-    <id>https://www.buxiaoxing.com/post/e4b.html</id>
-    <published>2022-07-25T07:25:40.000Z</published>
-    <updated>2022-07-26T10:01:08.000Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>我知道你总有一天会想我</strong></p><a id="more"></a><ul><li><p>错误分两种</p><ul><li>低级错误(语法解析错误)<br>程序在执行前会扫面所有代码，看是否有语法错误，如果有语法错误，代码一行也不会执行<br>一个代码块的语法错误不会影响另一个代码块的运行，代码块：一个script标签，不同代码块能互相应用变量</li><li>逻辑错误<br>执行到该行报错，后面的代码不会执行</li></ul></li><li><p><code>Error</code> 实例对象</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> err = <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"出错了"</span>)</span><br><span class="line"><span class="comment">//这个对象有3个属性</span></span><br><span class="line"><span class="comment">//1. message错误提示信息</span></span><br><span class="line"><span class="comment">//2. name错误名称</span></span><br><span class="line"><span class="comment">//3. stack错误的堆栈</span></span><br></pre></td></tr></table></figure><ul><li><p>原生错误类型</p><ul><li><p><code>SyntaxError</code>    </p><p>语法错误</p></li><li><p><code>ReferenceError</code>     </p><p>引用不存在变量</p></li><li><p><code>RangeError</code></p><p>值超出有效范围，数组长度，Number值的范围，函数堆栈</p></li><li><p><code>TypeError</code></p><p>类型错误</p></li><li><p><code>URIError</code></p><p>URI相关函数的参数不正确</p></li><li><p><code>EvalError</code></p><p><code>eval</code> 函数没有被正确的执行</p></li></ul></li><li><p>自定义错误</p><p>继承 Error对象</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">myError.prototype = <span class="keyword">new</span> <span class="built_in">Error</span>()</span><br></pre></td></tr></table></figure></li><li><p><code>throw</code></p><p>手动中断程序执行，抛出一个错误</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'出错了'</span>)</span><br></pre></td></tr></table></figure></li><li><p><code>try……catch</code></p><p>出现错误，对错误进行处理，程序不会中断</p></li><li><p><code>finally</code></p><p>可以在 <code>try……catch</code> 后添加 <code>finally</code> 代码块，不管是否出现错误，最后都会执行的语句</p></li></ul></li></ul>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;strong&gt;我知道你总有一天会想我&lt;/strong&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="js" scheme="https://www.buxiaoxing.com/tags/js/"/>
-    
-    <category term="前端基础" scheme="https://www.buxiaoxing.com/tags/前端基础/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>js基础-数据类型</title>
-    <link href="https://www.buxiaoxing.com/post/6f0e.html"/>
-    <id>https://www.buxiaoxing.com/post/6f0e.html</id>
-    <published>2022-07-25T07:22:54.000Z</published>
-    <updated>2022-07-26T10:01:15.242Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>天下万般兵刃，唯有过往伤人最深</strong></p><a id="more"></a><h5 id="原始值"><a href="#原始值" class="headerlink" title="原始值"></a>原始值</h5><ul><li><p>Number  </p><p>var age = 18;<br>var money = 100.1;</p></li><li><p>Boolean</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">true</span><br><span class="line">false</span><br></pre></td></tr></table></figure></li><li><p>String  </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var str1 = &apos;hello&apos;</span><br><span class="line">var str2 = &quot;world&quot;</span><br></pre></td></tr></table></figure></li><li><p>undefined<br>声明未赋值的变量</p></li><li><p>null<br>空值，占位  </p></li><li><p><strong>原始值是存入栈空间里面的(先进后出)</strong></p> <img src="http://img.buxiaoxing.com/uPic/2022/07/25164551-b8zMvc-image-20220725164549846.png" alt="image-20220725164549846" style="zoom: 33%;"></li></ul><h5 id="引用值"><a href="#引用值" class="headerlink" title="引用值"></a>引用值</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">array</span><br><span class="line">Object</span><br><span class="line">function</span><br><span class="line">...</span><br></pre></td></tr></table></figure><p><strong>引用值存入堆里面</strong><br><img src="http://img.buxiaoxing.com/uPic/2022/07/25164519-k4uiNI-image-20220725164518244.png" alt="image-20220725164518244" style="zoom: 33%;"></p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;strong&gt;天下万般兵刃，唯有过往伤人最深&lt;/strong&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="前端" scheme="https://www.buxiaoxing.com/tags/前端/"/>
-    
-    <category term="js基础" scheme="https://www.buxiaoxing.com/tags/js基础/"/>
-    
-    <category term="类型" scheme="https://www.buxiaoxing.com/tags/类型/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>js变量</title>
-    <link href="https://www.buxiaoxing.com/post/ba5b.html"/>
-    <id>https://www.buxiaoxing.com/post/ba5b.html</id>
-    <published>2022-07-25T07:19:07.000Z</published>
-    <updated>2022-07-26T10:00:57.748Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>天高地迥，觉宇宙之无穷；兴尽悲来，识盈虚之有数</strong></p><a id="more"></a><ul><li><p>变量声明</p><p><code>var a</code></p></li><li><p>变量赋值</p><p><code>a = 1</code></p></li><li><p>声明变量并赋值</p><p><code>var h1=1,h2=2,h3=3</code></p></li><li><p>变量命名</p><ul><li>必须是数字、字母、下滑线、$组成；并且不能以数字开头</li><li>变量名不能是关键字、保留字</li><li>变量名语义化</li><li>驼峰命名法    <code>userName</code></li></ul></li><li><p>变量名是区分大小写的</p><p><code>var name,Name;</code><br>name和Name是两个变量</p></li><li><p>变量重名后面的值会覆盖前面的值</p></li></ul>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;strong&gt;天高地迥，觉宇宙之无穷；兴尽悲来，识盈虚之有数&lt;/strong&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="前端" scheme="https://www.buxiaoxing.com/tags/前端/"/>
-    
-    <category term="js基础" scheme="https://www.buxiaoxing.com/tags/js基础/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>js基础-js引入</title>
-    <link href="https://www.buxiaoxing.com/post/9add.html"/>
-    <id>https://www.buxiaoxing.com/post/9add.html</id>
-    <published>2022-07-25T07:17:57.000Z</published>
-    <updated>2022-07-26T10:00:52.951Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>穷且益坚，不坠青云之志；老当益壮，宁移白首之心</strong></p><a id="more"></a><ol><li><p>内部引入</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">js代码</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></li></ol><ol start="2"><li><p>外部引入</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js文件路径"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></li></ol><ul><li>script标签的位置<ul><li>语法而言script&gt;标签可以放在head下面，也可以放在body下面</li><li>就效率而言，推荐script标签放在body最后<br><strong>注意：要获取html中的dom元素，script必须放在该dom元素的后面(页面按顺序加载，或者代码在页面加载完后执行)</strong></li></ul></li><li><code>defer</code> 和 <code>async</code><ul><li>同：都是异步加载 js 文件</li><li>异：<ul><li><code>async</code>：没有执行顺序，谁先下载完就先执行谁，并停止页面的渲染</li><li><code>defer</code>：有执行顺序，下载完成后也要等到页面渲染完成才执行</li></ul></li></ul></li></ul>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;strong&gt;穷且益坚，不坠青云之志；老当益壮，宁移白首之心&lt;/strong&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="前端" scheme="https://www.buxiaoxing.com/tags/前端/"/>
-    
-    <category term="js基础" scheme="https://www.buxiaoxing.com/tags/js基础/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>express+mysql</title>
-    <link href="https://www.buxiaoxing.com/post/a9d1.html"/>
-    <id>https://www.buxiaoxing.com/post/a9d1.html</id>
-    <published>2022-07-25T07:06:06.000Z</published>
-    <updated>2022-07-26T06:57:09.805Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>杨意不逢，抚凌云而自惜；钟期既遇，奏流水以何惭</strong></p><a id="more"></a><h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><p><img src="http://img.buxiaoxing.com/uPic/2022/07/19150949-4qIZrS-image-20220719150947386.png" alt="image-20220719150947386"></p><h4 id="安装与配置mysql模块"><a href="#安装与配置mysql模块" class="headerlink" title="安装与配置mysql模块"></a>安装与配置mysql模块</h4><ul><li><p>安装mysql模块</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/19151058-9PlvNa-image-20220719151055731.png" alt="image-20220719151055731"></p></li><li><p>配置mysql模块</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/19151133-hgAfY9-image-20220719151131981.png" alt="image-20220719151131981"></p></li><li><p>测试mysql是否正常工作</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/19152044-9pfv31-image-20220719152042516.png" alt="image-20220719152042516"></p><ul><li><p>默认端口为3306可以通过port属性指定端口</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> db = mysql.createPool(&#123;</span><br><span class="line">  host: <span class="string">'124.223.225.150'</span>,</span><br><span class="line">  port: <span class="string">'3307'</span>,</span><br><span class="line">  user: <span class="string">'root'</span>,</span><br><span class="line">  password: <span class="string">'root'</span>,</span><br><span class="line">  database: <span class="string">'my_db_01'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li><li><p>如果测试报错</p><p><code>ER_NOT_SUPPORTED_AUTH_MODE: Client does not support authentication protocol requested by server; consider upgrading MySQL client</code></p><p>在mysql的命令行执行</p><p><code>ALTER USER &#39;root&#39; IDENTIFIED WITH mysql_native_password BY &#39;password&#39;</code></p></li></ul></li></ul><h4 id="使用myql操作数据库"><a href="#使用myql操作数据库" class="headerlink" title="使用myql操作数据库"></a>使用myql操作数据库</h4><ul><li><p>查询数据</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/19153953-t40H05-image-20220719153952299.png" alt="image-20220719153952299"></p></li><li><p>插入数据</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/19154330-ymqBv4-image-20220719154329294.png" alt="image-20220719154329294"></p><p><strong>快速插入数据</strong></p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/19155327-kys86S-image-20220719155326041.png" alt="image-20220719155326041"></p></li><li><p>更新数据</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/19155738-I6yAtP-image-20220719155735471.png" alt="image-20220719155735471"></p><p><strong>更新数据的便捷方式</strong></p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/19160258-n1QzyA-image-20220719160256703.png" alt="image-20220719160256703"></p></li><li><p>删除数据</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/19160507-7s2yEa-image-20220719160505613.png" alt="image-20220719160505613"></p></li><li><p>标记删除</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/19161114-AcN6ZF-image-20220719161113272.png" alt="image-20220719161113272"></p></li></ul>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;strong&gt;杨意不逢，抚凌云而自惜；钟期既遇，奏流水以何惭&lt;/strong&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="后端" scheme="https://www.buxiaoxing.com/tags/后端/"/>
-    
-    <category term="express" scheme="https://www.buxiaoxing.com/tags/express/"/>
-    
-    <category term="mysql" scheme="https://www.buxiaoxing.com/tags/mysql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>web开发模式</title>
-    <link href="https://www.buxiaoxing.com/post/e57e.html"/>
-    <id>https://www.buxiaoxing.com/post/e57e.html</id>
-    <published>2022-07-25T06:59:22.000Z</published>
-    <updated>2022-07-26T06:57:09.801Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>关山难越，谁悲失路之人；萍水相逢相逢，尽是他乡之客</strong></p><a id="more"></a><h3 id="Web开发模式"><a href="#Web开发模式" class="headerlink" title="Web开发模式"></a>Web开发模式</h3><p><img src="http://img.buxiaoxing.com/uPic/2022/07/19162300-sOFguR-image-20220719162258025.png" alt="image-20220719162258025"></p><h4 id="服务端渲染开发模式"><a href="#服务端渲染开发模式" class="headerlink" title="服务端渲染开发模式"></a>服务端渲染开发模式</h4><ul><li><p>概念</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/19162454-MBCvop-image-20220719162453442.png" alt="image-20220719162453442"></p></li><li><p>优缺点</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/19162602-bmJ3Ew-image-20220719162601090.png" alt="image-20220719162601090"></p></li></ul><h4 id="前后端分离的开发模式"><a href="#前后端分离的开发模式" class="headerlink" title="前后端分离的开发模式"></a>前后端分离的开发模式</h4><ul><li><p>概念</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/19162654-HFSq8k-image-20220719162652214.png" alt="image-20220719162652214"></p></li><li><p>优缺点</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/19162811-bOaflt-image-20220719162809588.png" alt="image-20220719162809588"></p></li></ul><h4 id="如何选择web开发模式"><a href="#如何选择web开发模式" class="headerlink" title="如何选择web开发模式"></a>如何选择web开发模式</h4><p><img src="http://img.buxiaoxing.com/uPic/2022/07/19163008-XyyBI0-image-20220719163006984.png" alt="image-20220719163006984"></p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;strong&gt;关山难越，谁悲失路之人；萍水相逢相逢，尽是他乡之客&lt;/strong&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="前端" scheme="https://www.buxiaoxing.com/tags/前端/"/>
-    
-    <category term="SEO" scheme="https://www.buxiaoxing.com/tags/SEO/"/>
-    
-    <category term="SSR" scheme="https://www.buxiaoxing.com/tags/SSR/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>前后端身份认证</title>
-    <link href="https://www.buxiaoxing.com/post/a30f.html"/>
-    <id>https://www.buxiaoxing.com/post/a30f.html</id>
-    <published>2022-07-25T06:55:02.000Z</published>
-    <updated>2022-07-26T06:57:09.806Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>我差一点就碰到月亮了，可惜天却亮了</strong></p><a id="more"></a><h3 id="身份认证"><a href="#身份认证" class="headerlink" title="身份认证"></a>身份认证</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><ul><li><p>什么是身份认证</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/25145803-U0Av5e-19163126-O0Cn5B-image-20220719163124154.png" alt="image-20220719163124154"></p></li><li><p>为什么需要身份认证</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/19163256-C5x2az-image-20220719163254643.png" alt="image-20220719163254643"></p></li><li><p>不同开发模式下的身份认证</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/19163330-zQcos2-image-20220719163324011.png" alt="image-20220719163324011"></p></li></ul><h4 id="session认证机制"><a href="#session认证机制" class="headerlink" title="session认证机制"></a>session认证机制</h4><ul><li><p>http协议的无状态性</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/19163519-9V4tX5-image-20220719163517712.png" alt="image-20220719163517712"></p></li><li><p>如何突破http无状态的限制</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/19163642-asxBvp-image-20220719163641042.png" alt="image-20220719163641042"></p></li><li><p>Cookie</p><ul><li><p>什么是cookie</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/19164106-mprtAf-image-20220719164105483.png" alt="image-20220719164105483"></p></li><li><p>cookie在身份认证中的作用</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/19164302-QqhCs5-image-20220719164300591.png" alt="image-20220719164300591"></p></li><li><p>cookie不具有安全性</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/19164635-HPpBuz-image-20220719164633252.png" alt="image-20220719164633252"></p></li><li><p>提高身份认证安全性</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/19164757-edIhUV-image-20220719164755788.png" alt="image-20220719164755788"></p></li><li><p>session工作原理</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/19165013-eSs8pt-image-20220719165010992.png" alt="image-20220719165010992"></p></li></ul></li></ul><h4 id="express中使用session认证"><a href="#express中使用session认证" class="headerlink" title="express中使用session认证"></a>express中使用session认证</h4><ul><li><p>安装中间件 express-session</p><p><code>npm i express-session</code></p></li><li><p>配置express-session中间件</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/19170255-UkIfMn-image-20220719170253995.png" alt="image-20220719170253995"></p></li><li><p>向session中存数据</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/19170714-S0y17S-image-20220719170712930.png" alt="image-20220719170712930"></p></li><li><p>从session中取数据</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/19171122-VkrwkN-image-20220719171119555.png" alt="image-20220719171119555"></p></li><li><p>清空session</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/19171435-lpnmtW-image-20220719171433524.png" alt="image-20220719171433524"></p></li></ul><h4 id="JWT认证机制"><a href="#JWT认证机制" class="headerlink" title="JWT认证机制"></a>JWT认证机制</h4><ul><li><p>session认证机制的局限性</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/20095009-NGyerG-image-20220720095006099.png" alt="image-20220720095006099"></p></li><li><p>什么是 JWT</p><p>JWT(Json Web Token)，是目前最流行的跨域认证方案</p></li><li><p>JWT工作原理</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/20095258-TW5BEA-image-20220720095252498.png" alt="image-20220720095252498"></p></li><li><p>JWT组成部分</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/20095427-75QYiZ-image-20220720095426079.png" alt="image-20220720095426079"></p></li><li><p>三个部分各自的含义</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/20095521-MY1UFp-image-20220720095519121.png" alt="image-20220720095519121"></p></li><li><p>JWT使用方式</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/20095647-hg3fot-image-20220720095645939.png" alt="image-20220720095645939"></p></li></ul><h4 id="Express中使用JWT"><a href="#Express中使用JWT" class="headerlink" title="Express中使用JWT"></a>Express中使用JWT</h4><ul><li><p>安装JWT包</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/20095756-ACsdOz-image-20220720095754562.png" alt="image-20220720095754562"></p></li><li><p>导入包</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/20095820-8jKs71-image-20220720095818427.png" alt="image-20220720095818427"></p></li><li><p>定义secret密钥</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/20100203-6rHFr2-image-20220720100201507.png" alt="image-20220720100201507"></p></li><li><p>登陆成功后生成JWT字符串</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/20100344-krlrDe-image-20220720100342542.png" alt="image-20220720100342542"></p></li><li><p>将 jwt 字符串还原成 json 对象</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/20101059-Bc6DOL-image-20220720101058352.png" alt="image-20220720101058352"></p></li><li><p>使用req.user获取用户信息</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/20101815-ga2p4a-image-20220720101814474.png" alt="image-20220720101814474"></p></li><li><p>捕获解析 JWT 失败后产生的错误</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/20103805-eiIUJs-image-20220720103804090.png" alt="image-20220720103804090"></p></li></ul>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;strong&gt;我差一点就碰到月亮了，可惜天却亮了&lt;/strong&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="后端" scheme="https://www.buxiaoxing.com/tags/后端/"/>
-    
-    <category term="jwt" scheme="https://www.buxiaoxing.com/tags/jwt/"/>
-    
-    <category term="cookie" scheme="https://www.buxiaoxing.com/tags/cookie/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>express</title>
-    <link href="https://www.buxiaoxing.com/post/711.html"/>
-    <id>https://www.buxiaoxing.com/post/711.html</id>
-    <published>2022-07-25T06:46:37.000Z</published>
-    <updated>2022-07-26T06:57:09.805Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>关于你的记忆，就像18岁那年的蝉鸣，点燃了整个夏天，却又消无声息的湮灭</strong></p><a id="more"></a><h4 id="Express简介"><a href="#Express简介" class="headerlink" title="Express简介"></a>Express简介</h4><ul><li><p>什么是Express</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/25144904-yeUVyx-15153906-fOAZ89-image-20220715153905228.png" alt="image-20220715153905228"></p></li><li><p>进一步理解Express</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/25144913-DXyLCz-15154021-53Uxjc-image-20220715154020043.png" alt="image-20220715154020043"></p></li><li><p>Express能做什么</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/25144921-K9qaEm-15154118-6EwCqU-image-20220715154116658.png" alt="image-20220715154116658"></p></li></ul><h4 id="Express基本使用"><a href="#Express基本使用" class="headerlink" title="Express基本使用"></a>Express基本使用</h4><ul><li><p>安装</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i express@4.17.1</span><br></pre></td></tr></table></figure></li><li><p>创建最基本的web服务器</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/25144926-r10y4L-15154316-q2R9GE-image-20220715154315034.png" alt="image-20220715154315034"></p></li><li><p>监听Get请求</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/25144931-xWMURa-15154930-ST8hUV-image-20220715154928751.png" alt="image-20220715154928751"></p></li><li><p>监听Post请求</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/25144939-0P4XEA-15154954-keF3ru-image-20220715154953068.png" alt="image-20220715154953068"></p></li><li><p>把内容响应给客户端</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/25144944-nxMXFr-15155055-miL1B6-image-20220715155053801.png" alt="image-20220715155053801"></p></li><li><p>获取URL中携带的查询参数</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/25144949-QqzMcy-15155452-qbdIcz-image-20220715155450858.png" alt="image-20220715155450858"></p></li><li><p>获取URL中的动态参数</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/25144955-1yhTIH-15155820-2GMNk9-image-20220715155818997.png" alt="image-20220715155818997"></p></li></ul><h4 id="托管静态资源"><a href="#托管静态资源" class="headerlink" title="托管静态资源"></a>托管静态资源</h4><ul><li><p>express.static()</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/15160451-VDoOdD-image-20220715160450570.png" alt="image-20220715160450570"></p></li><li><p>托管多个静态资源目录</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/15161257-0AV1IN-image-20220715161255655.png" alt="image-20220715161255655"></p></li><li><p>挂载路径前缀</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/15161446-UqMsxc-image-20220715161444860.png" alt="image-20220715161444860"></p></li></ul><h4 id="nodemon"><a href="#nodemon" class="headerlink" title="nodemon"></a>nodemon</h4><ul><li><p>为什么使用nodemon</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/15161757-1r2K0Q-image-20220715161755523.png" alt="image-20220715161755523"></p></li><li><p>安装nodemon</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i nodemon -g</span><br></pre></td></tr></table></figure></li><li><p>使用nodemon</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/15161939-XfrMHP-image-20220715161938250.png" alt="image-20220715161938250"></p></li></ul><h4 id="express路由"><a href="#express路由" class="headerlink" title="express路由"></a>express路由</h4><ul><li><p>路由的概念</p><ul><li><p>生活中的路由</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/15162218-kajbjY-image-20220715162216947.png" alt="image-20220715162216947"></p></li><li><p>Express 中的路由</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/15162441-FeJKHH-image-20220715162440325.png" alt="image-20220715162440325"></p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/15162455-sSkY7n-image-20220715162454145.png" alt="image-20220715162454145"></p></li><li><p>路由的匹配过程</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/15162800-8JhvMZ-image-20220715162758368.png" alt="image-20220715162758368"></p></li><li><p>模块化路由</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/15163056-qpRMCO-image-20220715163054750.png" alt="image-20220715163054750"></p><ul><li><p>创建路由模块</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/15163134-5z4JDX-image-20220715163126892.png" alt="image-20220715163126892"></p></li><li><p>注册路由模块</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/15163614-m0PI4n-image-20220715163613304.png" alt="image-20220715163613304"></p></li><li><p>app.use()</p><p>注册全局中间件，这里的router和前面的static都是中间件</p></li><li><p>为路由模块添加前缀</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/15164255-VRNzpi-image-20220715164253908.png" alt="image-20220715164253908"></p></li></ul></li></ul></li></ul><h4 id="express中间件"><a href="#express中间件" class="headerlink" title="express中间件"></a>express中间件</h4><ul><li><p>什么是中间件</p><p>中间件(Middleware)，特指业务流程的<code>中间处理环节</code></p><ul><li><p>现实中的例子</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/15164634-JaG2C7-image-20220715164632920.png" alt="image-20220715164632920"></p></li></ul></li><li><p>express中间件调用流程</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/15164734-m08cBj-image-20220715164733660.png" alt="image-20220715164733660"></p></li></ul><ul><li><p>express中间件格式</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/15165057-uP91PS-image-20220715165055802.png" alt="image-20220715165055802"></p></li><li><p>next函数作用</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/15165223-jQqpVY-image-20220715165221756.png" alt="image-20220715165221756"></p></li><li><p>定义中间件函数</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/15165330-5GmnpW-image-20220715165329865.png" alt="image-20220715165329865"></p></li><li><p>全局生效的中间件</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/15165649-JM4vki-image-20220715165648380.png" alt="image-20220715165648380"></p></li><li><p>定义全局中间件的简化形式</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/15170232-LzjAnJ-image-20220715170230804.png" alt="image-20220715170230804"></p></li><li><p>中间件的作用</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/15170518-igccsx-image-20220715170516920.png" alt="image-20220715170516920"></p></li><li><p>定义多个全局中间件</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/15171024-yXUMuI-image-20220715171023312.png" alt="image-20220715171023312"></p></li><li><p>局部生效的中间件</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/15171357-dzgFYv-image-20220715171356413.png" alt="image-20220715171356413"></p></li><li><p>定义多个局部中间件</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/15171730-l2qtAH-image-20220715171729504.png" alt="image-20220715171729504"></p></li><li><p>中间件使用的5个注意事项</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/18095638-yUUvdZ-image-20220718095637386.png" alt="image-20220718095637386"></p></li><li><p>中间件的分类</p><p> <img src="http://img.buxiaoxing.com/uPic/2022/07/18095800-5Vlnen-image-20220718095758842.png" alt="image-20220718095758842"></p></li><li><p>应用级别中间件</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/18095844-jzD0LW-image-20220718095842711.png" alt="image-20220718095842711"></p></li><li><p>路由级别中间件</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/18100000-TQOmLZ-image-20220718095959079.png" alt="image-20220718095959079"></p></li><li><p>错误级别中间件</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/18100132-jpVvat-image-20220718100131119.png" alt="image-20220718100131119"></p></li><li><p>express 内置的中间件</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/18104841-R9G5p2-image-20220718104840412.png" alt="image-20220718104840412"></p></li><li><p>第三方中间件</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/18112204-im0lx1-image-20220718112203572.png" alt="image-20220718112203572"></p></li><li><p>自定义中间件</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/18112350-SRpd8U-image-20220718112348419.png" alt="image-20220718112348419"></p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/18142349-3pPzHh-image-20220718142348344.png" alt="image-20220718142348344"></p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/18113132-bkLCJt-image-20220718113130433.png" alt="image-20220718113130433"></p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/18113741-voXkal-image-20220718113739745.png" alt="image-20220718113739745"></p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/18114040-CSxyJ1-image-20220718114039354.png" alt="image-20220718114039354"></p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/18142508-oq8cvp-image-20220718142506904.png" alt="image-20220718142506904"></p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/18142921-K7sMTJ-image-20220718142919506.png" alt="image-20220718142919506"></p></li></ul><h4 id="使用express写接口"><a href="#使用express写接口" class="headerlink" title="使用express写接口"></a>使用express写接口</h4><ul><li><p>创建基本的web服务器</p></li><li><p>注册路由模块</p></li><li><p>编写GET请求</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/18152441-H1FXEk-image-20220718152440136.png" alt="image-20220718152440136"></p></li><li><p>编写POST请求</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/18153029-4lH3CM-image-20220718153027758.png" alt="image-20220718153027758"></p></li><li><p>CORS跨域共享</p><ul><li><p>接口的跨域问题</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/18154334-RvV4nu-image-20220718154333387.png" alt="image-20220718154333387"></p></li><li><p>使用cors中间件解决跨域问题</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/18154443-hLk3YD-image-20220718154442316.png" alt="image-20220718154442316"></p></li></ul></li><li><p>Cors</p><ul><li><p>什么是cors</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/18154922-zjIywe-image-20220718154920768.png" alt="image-20220718154920768"></p></li><li><p>cors的注意事项</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/18155017-iKxjAP-image-20220718155015799.png" alt="image-20220718155015799"></p></li><li><p>cors响应头部 Access-Control-Allow-Origin</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/18155205-sRaUcA-image-20220718155203821.png" alt="image-20220718155203821"></p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/18155243-2ZvIYF-image-20220718155241403.png" alt="image-20220718155241403"></p></li><li><p>cors响应头部 Access-Control-Allow-Origin</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/18155426-7VBbdE-image-20220718155424641.png" alt="image-20220718155424641"></p></li><li><p>cors响应头部 Access-Control-Allow-Methods</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/18155525-2bJ7nt-image-20220718155524332.png" alt="image-20220718155524332"></p></li><li><p>cors请求分类</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/18155627-wj9pOJ-image-20220718155625543.png" alt="image-20220718155625543"></p><ul><li><p>简单请求</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/18155655-DVhAkr-image-20220718155653201.png" alt="image-20220718155653201"></p></li><li><p>预检请求</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/18155835-r5MOPO-image-20220718155834169.png" alt="image-20220718155834169"></p></li><li><p>简单请求与预检请求的区别</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/18155924-C5Pvbw-image-20220718155922671.png" alt="image-20220718155922671"></p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/18160952-uDoB9k-image-20220718160950587.png" alt="image-20220718160950587"></p></li></ul></li></ul></li><li><p>jsonp</p><ul><li><p>概念与特点</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/18161122-xUfIFj-image-20220718161121457.png" alt="image-20220718161121457"></p></li><li><p>创建jsonp接口注意事项</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/18161240-PCNjFP-image-20220718161239658.png" alt="image-20220718161239658"></p></li><li><p>实现jsonp接口步骤</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/18161421-gueo9O-image-20220718161419127.png" alt="image-20220718161419127"></p></li><li><p>在网页中使用jquery发送JSONP请求</p><p><img src="http://img.buxiaoxing.com/uPic/2022/07/18162217-4ctX01-image-20220718162216210.png" alt="image-20220718162216210"></p></li></ul></li></ul>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;strong&gt;关于你的记忆，就像18岁那年的蝉鸣，点燃了整个夏天，却又消无声息的湮灭&lt;/strong&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="后端" scheme="https://www.buxiaoxing.com/tags/后端/"/>
-    
-    <category term="express" scheme="https://www.buxiaoxing.com/tags/express/"/>
-    
-    <category term="node" scheme="https://www.buxiaoxing.com/tags/node/"/>
     
   </entry>
   
